@@ -12,9 +12,9 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new(portfolio_params)
+    @job = Job.new(job_params)
       if @job.save
-        redirect_to portfolio_path(@job)
+        redirect_to job_path(@job)
       else
         render :new
       end
@@ -24,7 +24,7 @@ class JobsController < ApplicationController
   end
   
   def update
-      if @job.update(portfolio_params)
+      if @job.update(job_params)
         @job.save
         redirect_to @job, notice: 'Your job was edited successfully'
       else
@@ -33,12 +33,12 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.friendly.find(params[:id])
+    @job = Job.find(params[:id])
   end
   
   def destroy
     if @job.destroy
-          redirect_to portfolios_path, notice: 'Your job was destroyed successfully'
+          redirect_to jobs_path, notice: 'Your job was destroyed successfully'
       else
         render :show, notice: 'Your job could not be destroyed'
       end
@@ -52,7 +52,7 @@ class JobsController < ApplicationController
     elsif @job.inactive?
       @job.active!
     end      
-    redirect_to portfolio_path, notice:  "#{@job.job_name} status has been updated."
+    redirect_to job_path, notice:  "#{@job.job_name} status has been updated."
   end
 
 
@@ -62,7 +62,7 @@ class JobsController < ApplicationController
       @job = Job.find(params[:id])
     end
 
-    def portfolio_params
+    def job_params
       params.require(:job).permit(:job_number, :job_name)
     end
 

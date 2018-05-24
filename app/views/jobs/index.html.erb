@@ -1,1 +1,8 @@
 <h1>Jobs Index</h1>
+<% @jobs.each do |job| %>
+  <%= link_to "#{job.job_number}", job_path(job)%> - 
+  <%= job.job_name%> - 
+  <%= job.status%> <br>
+<% end %>
+
+<%= link_to "New Job", new_job_path%>
