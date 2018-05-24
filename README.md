@@ -29,6 +29,7 @@ Database Functionality for:
 - User Dash
 - Archive
 - Task Entry
+
 Styling
 - Basic Bootstrap for site functionality
 
@@ -44,14 +45,12 @@ Optional
 Pages for:
 - Task and Employees list
 - Jobs list
-- Login
 - Admin Dashboard
 - User Dashboard
 - Archive of Time Entries and requests with searchability 
 
 Create, Read, Update, and Destroy Functionality for:
 - Task
-- Employees
 - Jobs
 - User Specific Time Entry with unchangeable clock in and out times
 - Time Requests with all fields editable to be submitted to site admin for approval
@@ -59,12 +58,13 @@ Create, Read, Update, and Destroy Functionality for:
 
 Database Functionality for:
 - Task
-- Employees
+
 - Jobs
 - Users
 - Admin Dash
 - User Dash
 - Archive
 - Task Entry
+
 Styling
 - Basic Bootstrap for site functionality
