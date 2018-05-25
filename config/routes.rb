@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :task_entries
+  resources :time_entries
+  get 'pages/admin_dashboard'
+
+  get 'pages/user_dashboard'
+
+  get 'pages/archive'
+
   root to: 'jobs#index'
   devise_for :users
   
@@ -15,5 +23,5 @@ Rails.application.routes.draw do
     end
   end
 
- 
+  
 end

@@ -58,14 +58,10 @@ Create, Read, Update, and Destroy Functionality for:
 
 Database Functionality for:
 
-
-
 - Admin Dash
 - User Dash
 - Archive
-- Task Entry
+- Task Entry (task switcher)
 
 Styling
 - Basic Bootstrap for site functionality
-
-Weston is cool
