@@ -33,33 +33,36 @@ Database Functionality for:
 Styling
 - Basic Bootstrap for site functionality
 
-The Total Price for the above services totals -- paid 50% down and 50% upon delivery.
+The Total Price for the above services totals * paid 50% down and 50% upon delivery.
 
 Optional
-- -- - monthly service charge for hosting and services
-- -- – 6 month service and hosting contract ($30 / month) ß
+- * - monthly service charge for hosting and services
+- * – 6 month service and hosting contract ($30 / month) ß
 
 
 # Tasks to Complete
+(PS, I like westons idea to sign what you work on so we can keep it straight)
 
 Pages for:
 - Task and Employees list (currently its just task index.  refactor this)
-- 
+- Job List
 - Admin Dashboard
 - User Dashboard
 - Archive of Time Entries and requests with searchability 
 
 Create, Read, Update, and Destroy Functionality for:
-
- 
+- Task - ABL
+- Employees - ABL
+- Jobs - ABL
 - User Specific Time Entry with unchangeable clock in and out times
 - Time Requests with all fields editable to be submitted to site admin for approval
 - Task Entry (to switch tasks without requiring clocking out)
 
 Database Functionality for:
-
-
-
+- Task - ABL
+- Employees - ABL
+- Jobs - ABL
+- Admin Users
 - Admin Dash
 - User Dash
 - Archive
@@ -69,3 +72,4 @@ Styling
 - Basic Bootstrap for site functionality
 
 Weston is cool
+doubt it

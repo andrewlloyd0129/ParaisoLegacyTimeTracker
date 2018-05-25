@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   # access all: [:show, :index], user: {except: [:destroy, :new ,:create, :update, :edit, :sort]}, admin: :all
 
   def index
-   @jobs = Task.all
+   @tasks = Task.all
   end
 
 
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
       if @task.save
-        redirect_to task_path(@task)
+        redirect_to tasks_path
       else
         render :new
       end
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   def update
       if @task.update(task_params)
         @task.save
-        redirect_to @task, notice: 'Your task was edited successfully'
+        redirect_to tasks_path, notice: 'Your task was edited successfully'
       else
         render :edit, notice: "Error updating your task"
       end
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     elsif @task.inactive?
       @task.active!
     end      
-    redirect_to task_path, notice:  "#{@task.title} status has been updated."
+    redirect_to tasks_path, notice:  "#{@task.title} status has been updated."
   end
 
 
@@ -63,7 +63,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:title)
+      params.require(:task).permit(:title, :status)
     end
 
 end
