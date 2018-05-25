@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_portfolio, only: [:show, :edit, :update, :destroy, :toggle_status]
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :toggle_status]
   # access all: [:show, :index], user: {except: [:destroy, :new ,:create, :update, :edit, :sort]}, admin: :all
 
   def index
@@ -58,7 +58,7 @@ class JobsController < ApplicationController
 
   private
 
-    def set_portfolio
+    def set_job
       @job = Job.find(params[:id])
     end
 

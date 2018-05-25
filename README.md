@@ -43,24 +43,23 @@ Optional
 # Tasks to Complete
 
 Pages for:
-- Task and Employees list
-- Jobs list
+- Task and Employees list (currently its just task index.  refactor this)
+- 
 - Admin Dashboard
 - User Dashboard
 - Archive of Time Entries and requests with searchability 
 
 Create, Read, Update, and Destroy Functionality for:
-- Task
-- Jobs
+
+ 
 - User Specific Time Entry with unchangeable clock in and out times
 - Time Requests with all fields editable to be submitted to site admin for approval
 - Task Entry (to switch tasks without requiring clocking out)
 
 Database Functionality for:
-- Task
 
-- Jobs
-- Users
+
+
 - Admin Dash
 - User Dash
 - Archive
