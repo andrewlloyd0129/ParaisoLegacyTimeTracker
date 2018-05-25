@@ -68,3 +68,5 @@ Database Functionality for:
 
 Styling
 - Basic Bootstrap for site functionality
+
+Weston is cool
