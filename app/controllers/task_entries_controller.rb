@@ -1,0 +1,2 @@
+class TaskEntriesController < ApplicationController
+end

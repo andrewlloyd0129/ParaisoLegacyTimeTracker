@@ -59,6 +59,7 @@ Create, Read, Update, and Destroy Functionality for:
 - Task Entry (to switch tasks without requiring clocking out)
 
 Database Functionality for:
+
 - Task - ABL
 - Employees - ABL
 - Jobs - ABL
@@ -66,10 +67,7 @@ Database Functionality for:
 - Admin Dash
 - User Dash
 - Archive
-- Task Entry
+- Task Entry (task switcher)
 
 Styling
 - Basic Bootstrap for site functionality
-
-Weston is cool
-doubt it
