@@ -21,3 +21,9 @@ User.create!(
 )
 
 puts "1 regular user created"
+
+10.times do |task|
+  Task.create!(title: "I made a task #{task}")
+end
+
+puts "10 tasks created"
