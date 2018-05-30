@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180525171112) do
+ActiveRecord::Schema.define(version: 20180530214954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20180525171112) do
   create_table "task_entries", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
-    t.bigint "time_entries_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["time_entries_id"], name: "index_task_entries_on_time_entries_id"
+    t.bigint "task_id"
+    t.index ["task_id"], name: "index_task_entries_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -64,5 +64,5 @@ ActiveRecord::Schema.define(version: 20180525171112) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "task_entries", "time_entries", column: "time_entries_id"
+  add_foreign_key "task_entries", "tasks"
 end

@@ -1,17 +1,18 @@
 class TaskEntriesController < ApplicationController
 	before_action :set_task_entry, only: [:show, :edit, :update, :destroy, :toggle_status]
-	access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit, :toggle_status]}, admin: :all
+	# access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit, :toggle_status]}, admin: :all
 
 	def index
-		@task_entries = TaskEntry.page(params[:page])
+		@task_entries = TaskEntry.all
 	end
 
 	def new
-		@task_entry = TaskEntry.new
+    @task_entry = TaskEntry.new
 	end
 
 	def create
-		@task_entry = TaskEntry.new(task_entry_params)
+    @task_entry = TaskEntry.new(task_entry_params)
+    
 		if @task_entry.save
 
 
@@ -28,6 +29,7 @@ class TaskEntriesController < ApplicationController
   end
   
   def update
+    @task = Task.all
   	if @task_entry.update(task_entry_params)
   		@task_entry.save
 
@@ -41,7 +43,7 @@ class TaskEntriesController < ApplicationController
   end
 
   def show
-  	@task_entry = TaskEntry.friendly.find(params[:id])
+  	@task_entry = TaskEntry.find(params[:id])
   end
   
   def destroy
@@ -72,7 +74,7 @@ class TaskEntriesController < ApplicationController
   end
 
   def task_entry_params
-  	params.require(:task_entry).permit(:title, :start_time, :end_time )
+  	params.require(:task_entry).permit(:start_time, :end_time, :task_id, :time_entries_id )
   end
 
 end
