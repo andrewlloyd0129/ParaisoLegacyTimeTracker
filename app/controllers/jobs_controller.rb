@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   # access all: [:show, :index], user: {except: [:destroy, :new ,:create, :update, :edit, :sort]}, admin: :all
 
   def index
-   @jobs = Job.all
+   @jobs = Job.order(job_number: :asc)
   end
 
 
@@ -52,7 +52,7 @@ class JobsController < ApplicationController
     elsif @job.inactive?
       @job.active!
     end      
-    redirect_to job_path, notice:  "#{@job.job_name} status has been updated."
+    redirect_to jobs_path, notice:  "#{@job.job_name} status has been updated."
   end
 
 

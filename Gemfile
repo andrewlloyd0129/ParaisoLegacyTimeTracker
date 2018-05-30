@@ -30,3 +30,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'petergate', '~> 1.8', '>= 1.8.1'
+gem 'bootstrap', '~> 4.1', '>= 4.1.1'
+gem 'jquery-rails'
+gem 'gritter', '~> 1.2'
