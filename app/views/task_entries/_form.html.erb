@@ -1,0 +1,11 @@
+<%= form_for @task_entry do |f| %>
+
+    <%= f.date_field :start_time %>
+    <%= f.date_field :end_time %>
+
+    <%= f.collection_select(:task_id, Task.all, :id, :title, :include_blank => "Please Select") %>
+
+    <%#= f.collection_select(:time_entries_id, TimeEntry.all, :id, :title, :include_blank => "Please Select") %>
+
+    <%= f.submit %>
+<% end %>
