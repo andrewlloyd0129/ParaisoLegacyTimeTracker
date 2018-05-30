@@ -1,0 +1,10 @@
+Clocked In at:
+<%= @entries.last.start_time.strftime("%l:%M %p") %>
+
+<%= form_for(@entries.last, url: clock_out_update_path, method: :put) do |f| %>
+Clocked Out at:
+<%= f.text_field :end_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
+
+<%= f.submit "Confirm" %>
+
+<% end %>
