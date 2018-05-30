@@ -1,0 +1,18 @@
+<% if @entries.last == nil %>
+  <%= link_to "Clock In", new_time_entry_path %><br> 
+<% elsif @entries.last.status != 'active' %>
+  <%= link_to "Clock In", new_time_entry_path %><br> 
+<% end %>
+
+<% if @entries.last != nil %>
+  <%= link_to "Clock Out", clock_out_path(@entries.last) if @entries.last.status == 'active' %><br>
+<% end %>
+
+<% @entries.each do |entry| %>
+  <%= entry.start_time.strftime("%D %l:%M %p") %>
+  <%= entry.end_time.strftime("%D %l:%M %p") if entry.end_time != nil %>
+  <%= entry.status %>
+  <%= link_to "EDIT", edit_time_entry_path(entry) %>
+  <%= link_to "DELETE", entry, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <br>
+<% end %>

@@ -1,0 +1,7 @@
+<%= form_for @entry do |f| %>
+
+<%= f.text_field :start_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
+
+<%= f.submit "Confirm" %>
+
+<% end %>

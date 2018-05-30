@@ -1,0 +1,9 @@
+<%= form_for @entry do |f| %>
+Clocked In:
+<%= f.datetime_field :start_time %><br>
+Clocked Out:
+<%= f.datetime_field :end_time %><br>
+
+<%= f.submit "Confirm" %>
+
+<% end %>
