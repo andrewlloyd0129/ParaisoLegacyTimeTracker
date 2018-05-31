@@ -15,4 +15,29 @@
   <%= link_to "EDIT", edit_time_entry_path(entry) %>
   <%= link_to "DELETE", entry, method: :delete, data: { confirm: 'Are you sure?' } %>
   <br>
+  <button onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
+  <div id="myDIV<%= entry.id %>">
+<table class="table table-bordered">
+  	<tr>
+	  	<th>Task</th>
+	  	<th>Start Time</th>
+	  	<th>End Time</th>
+	</tr>
+	<% entry.task_entries.each do |task| %>
+	<tr>
+	  	<td><%= task.task.title %></td>
+	  	<td><%= task.start_time.strftime("%I:%M %p") %></td>
+	  	<td><%= task.end_time.strftime("%I:%M %p") %></td>
+	  <% end %>
+	  </tr>
+  </table>
+  </div>
+  <hr>
 <% end %>
+
+<% @entries.each do |e| %>
+<script>
+	$( document ).ready(toggleHideShow("<%= e.id %>"));
+</script>
+<% end %>
+
