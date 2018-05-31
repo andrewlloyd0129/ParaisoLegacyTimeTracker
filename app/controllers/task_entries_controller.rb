@@ -74,7 +74,7 @@ class TaskEntriesController < ApplicationController
   end
 
   def task_entry_params
-  	params.require(:task_entry).permit(:start_time, :end_time, :task_id, :time_entries_id )
+  	params.require(:task_entry).permit(:start_time, :end_time, :task_id, :time_entry_id )
   end
 
 end

@@ -27,3 +27,17 @@ puts "1 regular user created"
 end
 
 puts "10 tasks created"
+
+10.times do |i|
+	TimeEntry.create!( 	start_time: Time.now - i,
+						end_time: Time.now - i,
+						user: User.first
+		)
+	10.times do |j|
+		TaskEntry.create!( 	start_time: Time.now - j,
+							end_time: Time.now - j,
+							task: Task.find_by_id(j + 1),
+							time_entry: TimeEntry.last
+			)
+	end
+end
