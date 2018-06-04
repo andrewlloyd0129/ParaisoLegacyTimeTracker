@@ -26,11 +26,13 @@ ActiveRecord::Schema.define(version: 20180531155331) do
   create_table "task_entries", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
+    t.bigint "time_entries_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "task_id"
     t.bigint "time_entry_id"
     t.index ["task_id"], name: "index_task_entries_on_task_id"
+    t.index ["time_entries_id"], name: "index_task_entries_on_time_entries_id"
     t.index ["time_entry_id"], name: "index_task_entries_on_time_entry_id"
   end
 
@@ -71,5 +73,6 @@ ActiveRecord::Schema.define(version: 20180531155331) do
 
   add_foreign_key "task_entries", "tasks"
   add_foreign_key "task_entries", "time_entries"
+  add_foreign_key "task_entries", "time_entries", column: "time_entries_id"
   add_foreign_key "time_entries", "users"
 end

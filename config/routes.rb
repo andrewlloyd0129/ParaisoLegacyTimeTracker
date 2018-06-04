@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   get 'pages/archive'
 
-  root to: 'jobs#index'
+  root to: 'pages#user_dashboard'
+  
   devise_for :users
   
   resources :jobs do
