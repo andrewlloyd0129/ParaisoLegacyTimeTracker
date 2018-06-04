@@ -14,13 +14,15 @@ User.create!(
 
 puts "1 admin user created"
 
-User.create!(
-   email: "test@test.com",
-   password: "asdfasdf",
-   password_confirmation: "asdfasdf"
-)
+2.times do |i|
+  User.create!(
+     email: "test#{i}@test.com",
+     password: "asdfasdf",
+     password_confirmation: "asdfasdf"
+  )
+end
 
-puts "1 regular user created"
+puts "2 regular user created"
 
 10.times do |task|
   Task.create!(title: "I made a task #{task}")
@@ -28,16 +30,32 @@ end
 
 puts "10 tasks created"
 
-10.times do |i|
+2.times do |i|
 	TimeEntry.create!( 	start_time: Time.now - i,
 						end_time: Time.now - i,
-						user: User.first
+						user_id: 2,
+            status: 'approved'
 		)
-	10.times do |j|
+	2.times do |j|
 		TaskEntry.create!( 	start_time: Time.now - j,
 							end_time: Time.now - j,
 							task: Task.find_by_id(j + 1),
 							time_entry: TimeEntry.last
 			)
 	end
+end
+
+2.times do |i|
+TimeEntry.create!(  start_time: Time.now - i,
+          end_time: Time.now - i,
+          user_id: 3,
+          status: 'approved'
+  )
+  2.times do |j|
+    TaskEntry.create!(  start_time: Time.now - j,
+              end_time: Time.now - j,
+              task: Task.find_by_id(j + 1),
+              time_entry: TimeEntry.last
+      )
+  end
 end
