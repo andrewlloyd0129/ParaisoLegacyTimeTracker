@@ -1,0 +1,6 @@
+class JobsCsv < ApplicationRecord
+
+
+
+
+end

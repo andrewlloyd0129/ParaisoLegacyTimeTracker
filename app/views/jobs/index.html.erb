@@ -9,6 +9,7 @@
     <th>Status</th>
     <th>Toggle Status</th>
     <th>Edit</th>
+    <th>Reports</th>
     <th>Delete</th>
 
   </tr>
@@ -19,6 +20,7 @@
     <td><%= job.status%></td>
     <td><%= link_to "Toggle Status", toggle_status_job_path(job) %></td>
     <td><%= link_to "Edit", edit_job_path(job) %></td>
+      <td><%= link_to "Generate Report", jobs_csv_path(job) %></td>
     <td><%= link_to "Delete", job, method: :delete, data:  {confirm: "Are you sure you want to delete?"} %></td>
   </tr>
 <% end %>

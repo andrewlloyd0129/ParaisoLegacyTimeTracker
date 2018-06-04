@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :jobs_csvs
   resources :task_entries
   resources :time_entries
 
