@@ -6,6 +6,7 @@ class JobsCsvsController < ApplicationController
 
     def show
       @job = Job.find(params[:id])
+      @task_entries = TaskEntry.
       respond_to do |format|
         format.html
         format.csv { send_data @job.to_csv }
