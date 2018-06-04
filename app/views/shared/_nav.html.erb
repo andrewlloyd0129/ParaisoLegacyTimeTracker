@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs ">
+  <li class="nav-item ">
+    <%= link_to 'Home', root_path, class: "nav-link #{active?(root_path)}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Time Entries', time_entries_path, class: "nav-link #{active?(time_entries_path)}" %>
+  </li>
+  <li class="nav-item ">
+    <%= link_to 'Task', tasks_path, class: "nav-link #{active?(tasks_path)}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Jobs', jobs_path, class: "nav-link #{active?(jobs_path)}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Archive', pages_archive_path, class: "nav-link #{active?(pages_archive_path)}" %>
+  </li>
+
+</ul>
