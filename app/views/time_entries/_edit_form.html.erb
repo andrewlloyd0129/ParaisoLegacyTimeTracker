@@ -4,6 +4,13 @@ Clocked In:
 Clocked Out:
 <%= f.datetime_field :end_time %><br>
 
+  <%= f.fields_for :task_entries do |task|  %>
+    <%= render 'task_entry_fields', f: task %>
+  <% end %>
+
+
+<div> <%= link_to_add_association 'Add Task Entry', f, :task_entries %> </div>
+
 <%= f.submit "Confirm" %>
 
 <% end %>
