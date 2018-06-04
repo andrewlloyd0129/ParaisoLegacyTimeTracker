@@ -2,8 +2,8 @@ class TimeEntriesController < ApplicationController
   before_action :set_entry, only: [:edit, :update, :destroy, :clock_out, :clock_out_update]
 
   def index
-    @entries = TimeEntry.all
-    @current_entry = @entries.last
+    @entries = TimeEntry.order(start_time: :desc)
+    @current_entry = TimeEntry.last
   end
 
   def new
@@ -64,7 +64,14 @@ class TimeEntriesController < ApplicationController
   end
 
   def time_entry_params
-    params.require(:time_entry).permit(:start_time, :end_time, :user_id)
+    params.require(:time_entry).permit( :start_time, 
+                                        :end_time, 
+                                        :user_id, 
+                                        task_entries_attributes:
+                                          [ :id,
+                                            :start_time,
+                                            :end_time,
+                                            :task_id])
   end
 end
  

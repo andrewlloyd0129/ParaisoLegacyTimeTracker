@@ -1,11 +1,11 @@
-<% if @entries.last == nil %>
+<% if @current_entry == nil %>
   <%= link_to "Clock In", new_time_entry_path %><br> 
-<% elsif @entries.last.status != 'active' %>
+<% elsif @current_entry.status != 'active' %>
   <%= link_to "Clock In", new_time_entry_path %><br> 
 <% end %>
 
-<% if @entries.last != nil %>
-  <%= link_to "Clock Out", clock_out_path(@entries.last) if @entries.last.status == 'active' %><br>
+<% if @current_entry != nil %>
+  <%= link_to "Clock Out", clock_out_path(@current_entry) if @current_entry.status == 'active' %><br>
 <% end %>
 
 <% @entries.each do |entry| %>
