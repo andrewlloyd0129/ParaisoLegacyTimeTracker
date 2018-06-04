@@ -58,4 +58,6 @@ TimeEntry.create!(  start_time: Time.now - i,
               time_entry: TimeEntry.last
       )
   end
+
 end
+  puts "4 task entries created"

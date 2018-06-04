@@ -1,0 +1,4 @@
+<% @jobs.each do |job| %>
+  <%= link_to "#{job.job_number} #{job.job_name}", jobs_csv_path(job) %>
+
+<% end %>

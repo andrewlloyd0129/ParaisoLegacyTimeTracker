@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180531155331) do
+ActiveRecord::Schema.define(version: 20180604180839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20180531155331) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "jobs_csvs", force: :cascade do |t|
+    t.text "csv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "task_entries", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
@@ -31,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180531155331) do
     t.datetime "updated_at", null: false
     t.bigint "task_id"
     t.bigint "time_entry_id"
+    t.bigint "job_id"
+    t.index ["job_id"], name: "index_task_entries_on_job_id"
     t.index ["task_id"], name: "index_task_entries_on_task_id"
     t.index ["time_entries_id"], name: "index_task_entries_on_time_entries_id"
     t.index ["time_entry_id"], name: "index_task_entries_on_time_entry_id"
@@ -71,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180531155331) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "task_entries", "jobs"
   add_foreign_key "task_entries", "tasks"
   add_foreign_key "task_entries", "time_entries"
   add_foreign_key "task_entries", "time_entries", column: "time_entries_id"
