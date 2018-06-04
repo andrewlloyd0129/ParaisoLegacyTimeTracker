@@ -12,4 +12,8 @@ module ApplicationHelper
     js add_gritter(msg, sticky: false, time: 1000)
   end
 
+  def active?(path)
+  "active" if current_page?(path)
+  end
+
 end
