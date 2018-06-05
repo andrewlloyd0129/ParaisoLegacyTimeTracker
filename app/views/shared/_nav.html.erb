@@ -14,5 +14,10 @@
   <li class="nav-item">
     <%= link_to 'Archive', pages_archive_path, class: "nav-link #{active?(pages_archive_path)}" %>
   </li>
-
+  <li class="nav-item ml-md-auto">
+    <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link', styles: 'align-right' %>
+  </li>
 </ul>
+
+
+
