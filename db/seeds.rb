@@ -9,7 +9,9 @@ User.create!(
    email: "admin@test.com",
    password: "asdfasdf",
    password_confirmation: "asdfasdf",
-   roles: "admin"
+   roles: "admin",
+   full_name: "Admin User",
+   wage: 15
 )
 
 puts "1 admin user created"
@@ -18,7 +20,9 @@ puts "1 admin user created"
   User.create!(
      email: "test#{i}@test.com",
      password: "asdfasdf",
-     password_confirmation: "asdfasdf"
+     password_confirmation: "asdfasdf",
+     full_name: "regUser #{i}",
+     wage: 15 + i
   )
 end
 
