@@ -2,5 +2,6 @@
 
 <%= f.hidden_field :start_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
 
-    <%= f.collection_select(:task_id, Task.all, :id, :title, :include_blank => "Please Select") %>	
+    <%= f.collection_select(:task_id, Task.all, :id, :title, :include_blank => "Task Select") %>	
+    <%= f.collection_select(:job_id, Job.all, :id, :job_name, :include_blank => "Job Select") %>	
 </div>

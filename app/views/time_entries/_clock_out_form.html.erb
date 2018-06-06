@@ -1,9 +1,18 @@
 Clocked In at:
-<%= @entries.last.start_time.strftime("%l:%M %p") %>
+<%= @current_entry.start_time.strftime("%l:%M %p") %>
 
-<%= form_for(@entries.last, url: clock_out_update_path, method: :put) do |f| %>
+<%= form_for(@current_entry, url: clock_out_update_path, method: :put) do |f| %>
 Clocked Out at:
 <%= f.text_field :end_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
+
+
+
+  <%= f.fields_for :task_entries do |f|  %>
+  	<% if !f.object.end_time %>
+    	<%= render 'task_entry_out', f: f %>
+    <% end %>
+  <% end %>
+
 
 <%= f.submit "Confirm" %>
 

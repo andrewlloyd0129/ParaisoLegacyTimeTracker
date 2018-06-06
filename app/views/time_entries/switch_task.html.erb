@@ -1,0 +1,20 @@
+Switch Task
+
+<%= form_for(@entry, url: switch_task_update_path, method: :put) do |f| %>
+
+  <%= f.fields_for :task_entries do |f|  %>
+  	<% if !f.object.end_time %>
+    	<%= render 'task_entry_out', f: f %>
+    <% end %>
+  <% end %>
+
+
+ <div id="myDIVswitch"> <%= link_to_add_association 'Add Task Entry', f, :task_entries, partial: 'task_entry_create' %> </div>
+
+<%= f.submit "Confirm" %>
+
+<% end %>
+<script>
+	$(document).ready(function() { $(".add_fields").click() } );
+	$(document).ready(toggleHideShow("switch"));
+</script>

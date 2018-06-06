@@ -1,9 +1,9 @@
 class TimeEntriesController < ApplicationController
-  before_action :set_entry, only: [:edit, :update, :destroy, :clock_out, :clock_out_update]
+  before_action :set_entry, only: [:edit, :update, :destroy, :clock_out, :clock_out_update, :switch_task, :switch_task_update]
 
   def index
-    @entries = TimeEntry.all
-    @current_entry = @entries.last
+    @entries = TimeEntry.where(user_id: current_user.id)
+    @current_entry = TimeEntry.where(user_id: current_user.id, end_time: nil).last
   end
 
   def new
@@ -12,16 +12,16 @@ class TimeEntriesController < ApplicationController
 
   def create
     @entry = TimeEntry.new(time_entry_params)
-      @entry.user_id = current_user.id
-      if @entry.save
-        redirect_to time_entries_path
-      else
-        render :new
-      end
+    @entry.user_id = current_user.id
+    if @entry.save
+      redirect_to time_entries_path
+    else
+      render :new
+    end
   end
 
   def edit
-    
+
   end
 
   def update
@@ -43,8 +43,7 @@ class TimeEntriesController < ApplicationController
   end
 
   def clock_out
-    @entries = TimeEntry.all
-    
+    @current_entry = TimeEntry.where(user_id: current_user.id).last
   end
 
   def clock_out_update
@@ -57,6 +56,18 @@ class TimeEntriesController < ApplicationController
     end
   end
 
+  def switch_task
+  end
+
+  def switch_task_update
+    if @entry.update(time_entry_params)
+      @entry.save
+      redirect_to time_entries_path, notice: 'Task Switched'
+    else
+      render :edit, notice: 'Error submitting your request'
+    end
+  end
+
   private
 
   def set_entry
@@ -64,14 +75,17 @@ class TimeEntriesController < ApplicationController
   end
 
   def time_entry_params
-    params.require(:time_entry).permit( :start_time, 
-                                        :end_time, 
-                                        :user_id, 
-                                        task_entries_attributes:
-                                          [ :id,
-                                            :start_time,
-                                            :end_time,
-                                            :task_id])
+    params.require(:time_entry).permit( 
+      :start_time, 
+      :end_time, 
+      :user_id, 
+      :task_entry,
+      task_entries_attributes:
+      [ :id,
+        :start_time,
+        :end_time,
+        :task_id,
+        :job_id,
+        :_destroy])
   end
 end
- 
