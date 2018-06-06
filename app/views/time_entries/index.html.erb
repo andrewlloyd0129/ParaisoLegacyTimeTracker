@@ -10,6 +10,10 @@
   <%= link_to "Clock Out", clock_out_path(@current_entry) if @current_entry.status == 'active' %><br>
 <% end %>
 
+<%# if @current_entry.end_time == nil %>
+  <%#= @current_entry.inspect %>
+<%# end %>
+
 <% @entries.each do |entry| %>
   <%= entry.start_time.strftime("%D %l:%M %p") %>
   <%= entry.end_time.strftime("%D %l:%M %p") if entry.end_time != nil %>
@@ -17,7 +21,9 @@
   <%= link_to "EDIT", edit_time_entry_path(entry) %>
   <%= link_to "DELETE", entry, method: :delete, data: { confirm: 'Are you sure?' } %>
   <br>
-  <button onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
+  <% if entry != @current_entry %>
+    <button onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
+  <% end %>
   <div id="myDIV<%= entry.id %>">
 <table class="table table-bordered">
   	<tr>
@@ -40,8 +46,10 @@
 <% end %>
 
 <% @entries.each do |e| %>
-<script>
-	$( document ).ready(toggleHideShow("<%= e.id %>"));
-</script>
+  <% if e != @current_entry %>
+    <script>
+    	$( document ).ready(toggleHideShow("<%= e.id %>"));
+    </script>
+  <% end %>
 <% end %>
 

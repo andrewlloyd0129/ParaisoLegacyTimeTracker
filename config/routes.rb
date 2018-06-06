@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'pages/archive'
 
-  root to: 'pages#user_dashboard'
+  root to: 'time_entries#index'
   
   devise_for :users
   
