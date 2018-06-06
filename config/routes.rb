@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'clock_out/:id', to: 'time_entries#clock_out', as: :clock_out
   put 'clock_out_update/:id', to: 'time_entries#clock_out_update', as: :clock_out_update
+  get 'switch_task/:id', to: 'time_entries#switch_task', as: :switch_task
+  put 'switch_task_update/:id', to: 'time_entries#switch_task_update', as: :switch_task_update
 
   get 'pages/admin_dashboard'
 
