@@ -4,6 +4,7 @@ class TimeEntriesController < ApplicationController
   def index
     @entries = TimeEntry.order(start_time: :desc)
     @current_entry = TimeEntry.where(user_id: current_user.id, end_time: nil).last
+
   end
 
   def new

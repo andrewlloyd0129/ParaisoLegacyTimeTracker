@@ -33,7 +33,11 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
+        respond_to do |format|
+        format.html
+ 
+        format.csv { send_data @job.to_csv }
+      end
   end
   
   def destroy
