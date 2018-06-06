@@ -2,8 +2,9 @@ class TimeEntriesController < ApplicationController
   before_action :set_entry, only: [:edit, :update, :destroy, :clock_out, :clock_out_update]
 
   def index
-    @entries = TimeEntry.all
-    @current_entry = @entries.last
+    @entries = TimeEntry.order(start_time: :desc)
+    @current_entry = TimeEntry.where(user_id: current_user.id, end_time: nil).last
+
   end
 
   def new

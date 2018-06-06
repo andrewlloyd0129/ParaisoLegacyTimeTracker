@@ -9,7 +9,9 @@
   </head>
 
   <body>
-    <%= render 'shared/nav' %>
+    <% if current_user %>
+      <%= render 'shared/nav' %>
+    <% end %>
     <%= alerts %> 
     <div class="container-fluid">
       <%= yield %>
