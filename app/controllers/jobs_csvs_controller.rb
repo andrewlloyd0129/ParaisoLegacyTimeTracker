@@ -12,4 +12,25 @@ class JobsCsvsController < ApplicationController
         format.csv { send_data @job.to_csv }
       end
     end
+
+    def new
+      @report = JobsCsv.new
+      @payroll_burden = JobsCsv.last
+    end
+
+    def create
+      @report = JobsCsv.new(report_params)
+      if @report.save
+        redirect_to jobs_path
+      else
+        render :new
+      end
+  
+    end
+
+    private
+
+      def report_params
+      params.require(:jobs_csv).permit(:csv, :payrollburden)
+    end
 end

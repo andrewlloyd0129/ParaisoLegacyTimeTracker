@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180605200443) do
+ActiveRecord::Schema.define(version: 20180606203004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180605200443) do
     t.text "csv"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payrollburden"
   end
 
   create_table "task_entries", force: :cascade do |t|
@@ -38,6 +39,12 @@ ActiveRecord::Schema.define(version: 20180605200443) do
     t.bigint "task_id"
     t.bigint "time_entry_id"
     t.bigint "job_id"
+    t.string "hours"
+    t.integer "overtime"
+    t.string "wage"
+    t.string "gross_pay"
+    t.string "payroll_burden"
+    t.string "total_cost"
     t.index ["job_id"], name: "index_task_entries_on_job_id"
     t.index ["task_id"], name: "index_task_entries_on_task_id"
     t.index ["time_entries_id"], name: "index_task_entries_on_time_entries_id"
