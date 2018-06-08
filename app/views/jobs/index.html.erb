@@ -1,4 +1,4 @@
-<h1>Jobs Index</h1>
+<h1>Jobs</h1>
 <%= link_to "New Job", new_job_path%>
 
 
@@ -7,10 +7,9 @@
     <th>Number</th>
     <th>Name</th>
     <th>Status</th>
-    <th>Toggle Status</th>
     <th>Edit</th>
+    <th>Toggle Status</th>
     <th>Reports</th>
-    <th>Delete</th>
 
   </tr>
 <% @jobs.each do |job| %>
@@ -18,10 +17,9 @@
     <td><%= job.job_number%></td>
     <td><%= job.job_name%></td>
     <td><%= job.status%></td>
-    <td><%= link_to "Toggle Status", toggle_status_job_path(job) %></td>
     <td><%= link_to "Edit", edit_job_path(job) %></td>
-      <td><%= link_to "Generate Report", jobs_csv_path(job, format: "csv") %></td>
-    <td><%= link_to "Delete", job, method: :delete, data:  {confirm: "Are you sure you want to delete?"} %></td>
+    <td><%= link_to "Toggle Status", toggle_status_job_path(job) %></td>
+    <td><%= link_to "Generate Report", jobs_csv_path(job, format: "csv") %></td
   </tr>
 <% end %>
 </table>

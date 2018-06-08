@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'pages/archive'
 
   root to: 'time_entries#index'
-  
+
   devise_for :users
   
   resources :jobs do

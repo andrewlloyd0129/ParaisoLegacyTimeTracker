@@ -44,7 +44,8 @@ puts "10 tasks created"
 		TaskEntry.create!( 	start_time: Time.now,
 							end_time: Time.now,
 							task: Task.find_by_id(j + 1),
-							time_entry: TimeEntry.last
+							time_entry: TimeEntry.last,
+              job_id: 1
 			)
 	end
 end
@@ -59,7 +60,8 @@ TimeEntry.create!(  start_time: Time.now,
     TaskEntry.create!(  start_time: Time.now,
               end_time: Time.now,
               task: Task.find_by_id(j + 1),
-              time_entry: TimeEntry.last
+              time_entry: TimeEntry.last,
+              job_id: 2
       )
   end
 

@@ -1,12 +1,48 @@
-<H1>Tasks Index.  Put this on pages</H1>
-<h3>Also I did not make a task show page.  I feel its worthless to get a page to go from list of tasks by title to task page with just the title on it.</h3>
-<h5>Also also, I have decided I really enjoy communicating through headers that get smaller in size as you go down the importance.</h5>
+<h1>Tasks</h1>
+  <%= link_to "New Task", new_task_path %>
 
-  <%= link_to "New Task", new_task_path %><br>
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Edit</th>
+    <th>Toggle Status</th>
 
-<% @tasks.each do |task| %>
-  <%= task.title %>
-  <%= task.status %> 
-  <%= link_to "Toggle status", toggle_status_task_path(task) %>
-  <br>
-<% end %>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.status %> </td>
+      <td><%= link_to "Edit", edit_task_path(task) %></td>
+      <td><%= link_to "Toggle status", toggle_status_task_path(task) %></td>
+    </tr>
+    
+  <% end %>
+</table>
+
+<h1>Employees</h1>
+
+<%= link_to 'New Employee' %>
+
+<table class="table table-bordered">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Wage</th>
+    <th>Edit</th>
+    <th>Toggle Status</th>
+
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%#= user.full_name %></td>
+      <td><%= user.email %> </td>
+      <td><%= user.role %> </td>
+      <td><%#= user.wage %> </td>
+      <td><%#= link_to "Edit", edit_task_path(user) %></td>
+      <td><%#= link_to "Toggle status", toggle_status_task_path(task) %></td>
+    </tr>
+    
+  <% end %>
+</table>
