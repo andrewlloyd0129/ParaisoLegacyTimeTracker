@@ -1,1 +1,35 @@
-<%= @pending.inspect %>
+<h1>Pending Time Changes</h1>
+<% @pending.each do |entry| %>
+  <%= link_to "Approve", admin_approve_time_entry_path(entry), class: 'btn btn-success' %>
+  <%= link_to "Reject", admin_reject_time_entry_path(entry), class: 'btn btn-danger' %>
+  <h5><%= entry.user.full_name %></h5>
+  <%= entry.start_time.strftime("%D %l:%M %p") %><br>
+  <%= entry.end_time.strftime("%D %l:%M %p") if entry.end_time != nil %>
+  <br>
+    <button class='btn btn-primary' onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
+  <div id="myDIV<%= entry.id %>">
+<table class="table table-bordered">
+    <tr>
+      <th>Job</th>
+      <th>Task</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+  </tr>
+  <% entry.task_entries.each do |task| %>
+  <tr>
+      <td><%= task.job.job_name %></td>
+      <td><%= task.task.title %></td>
+      <td><%= task.start_time.strftime("%l:%M %p") %></td>
+      <td><%= task.end_time.strftime("%l:%M %p") unless !task.end_time %></td>
+    <% end %>
+    </tr>
+  </table>
+  </div>
+  <hr>
+<% end %>
+
+<% @pending.each do |e| %>
+    <script>
+      $( document ).ready(toggleHideShow("<%= e.id %>"));
+    </script>
+<% end %>

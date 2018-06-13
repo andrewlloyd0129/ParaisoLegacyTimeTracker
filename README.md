@@ -5,11 +5,11 @@ Quote For Work – Bid 2a
 Paraiso Gaming Studios proposes a bid to Lloyds Cabinetry and Countertops for a custom website including the following pages and features.  The price includes all work required for a fully functional and styled web application.  The scope of work includes:
 
 Pages for:
-- [ ] Task and Employees list
+- [MRR] Task and Employees list
 - [ ] Jobs list
 - [ ] Login
-- [ ] Admin Dashboard
-- [ ] User Dashboard
+- [MRR] Admin Dashboard
+- [MRR] User Dashboard
 - [ ] Archive of Time Entries and requests with searchability 
 
 Create, Read, Update, and Destroy Functionality for:
@@ -17,16 +17,16 @@ Create, Read, Update, and Destroy Functionality for:
 - [ABL] Employees
 - [ABL] Jobs
 - [MRR] User Specific Time Entry with unchangeable clock in and out times
-- [ ] Time Requests with all fields editable to be submitted to site admin for approval
+- [MRR] Time Requests with all fields editable to be submitted to site admin for approval
 - [ ] Task Entry (to switch tasks without requiring clocking out)
 
 Database Functionality for:
 - [ABL] Task
 - [ABL] Employees
 - [ABL] Jobs
-- [ ] Users
-- [ ] Admin Dash
-- [ ] User Dash
+- [MRR] Users
+- [MRR] Admin Dash
+- [MRR] User Dash
 - [ ] Archive
 - [ ] Task Entry
 

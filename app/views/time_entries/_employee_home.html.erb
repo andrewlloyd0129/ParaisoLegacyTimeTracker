@@ -36,8 +36,8 @@
   <tr>
       <td><%= task.job.job_name %></td>
       <td><%= task.task.title %></td>
-      <td><%= task.start_time.strftime("%I:%M %p") %></td>
-      <td><%= task.end_time.strftime("%I:%M %p") unless !task.end_time %></td>
+      <td><%= task.start_time.strftime("%l:%M %p") %></td>
+      <td><%= task.end_time.strftime("%l:%M %p") unless !task.end_time %></td>
     <% end %>
     </tr>
   </table>

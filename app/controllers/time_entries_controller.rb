@@ -1,5 +1,5 @@
 class TimeEntriesController < ApplicationController
-  before_action :set_entry, only: [:edit, :update, :destroy, :clock_out, :clock_out_update, :switch_task, :switch_task_update]
+  before_action :set_entry, only: [:edit, :update, :destroy, :clock_out, :clock_out_update, :switch_task, :switch_task_update, :admin_approve, :admin_reject]
 
   def index
     @entries = TimeEntry.where(user_id: current_user.id)
@@ -68,6 +68,15 @@ class TimeEntriesController < ApplicationController
     else
       render :edit, notice: 'Error submitting your request'
     end
+  end
+
+  def admin_approve
+    @entry.approved!
+    redirect_to :root
+  end
+
+  def admin_reject
+    redirect_to :root
   end
 
   private

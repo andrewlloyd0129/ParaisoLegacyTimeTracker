@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   resources :jobs_csvs
   resources :task_entries
-  resources :time_entries
+  resources :time_entries do
+    member do 
+      get :admin_approve
+      get :admin_reject
+    end
+  end
 
   get 'clock_out/:id', to: 'time_entries#clock_out', as: :clock_out
   put 'clock_out_update/:id', to: 'time_entries#clock_out_update', as: :clock_out_update
