@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy, :toggle_status]
-  # access all: [:show, :index], user: {except: [:destroy, :new ,:create, :update, :edit, :sort]}, admin: :all
+  access admin: :all
 
   def index
    @jobs = Job.order(job_number: :asc)

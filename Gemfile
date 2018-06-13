@@ -35,3 +35,6 @@ gem 'jquery-rails'
 gem 'gritter', '~> 1.2'
 
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
+
+gem 'administrate', '~> 0.10.0'
+gem 'bourbon'

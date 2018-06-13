@@ -4,6 +4,7 @@ class TimeEntriesController < ApplicationController
   def index
     @entries = TimeEntry.where(user_id: current_user.id)
     @current_entry = TimeEntry.where(user_id: current_user.id, end_time: nil).last
+    @pending = TimeEntry.where(status: 'pending')
 
   end
 

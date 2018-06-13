@@ -20,29 +20,3 @@
   <% end %>
 </table>
 
-<h1>Employees</h1>
-
-<%= link_to 'New Employee' %>
-
-<table class="table table-bordered">
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Role</th>
-    <th>Wage</th>
-    <th>Edit</th>
-    <th>Toggle Status</th>
-
-  </tr>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%#= user.full_name %></td>
-      <td><%= user.email %> </td>
-      <td><%= user.role %> </td>
-      <td><%#= user.wage %> </td>
-      <td><%#= link_to "Edit", edit_task_path(user) %></td>
-      <td><%#= link_to "Toggle status", toggle_status_task_path(task) %></td>
-    </tr>
-    
-  <% end %>
-</table>

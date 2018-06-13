@@ -1,55 +1,5 @@
-<% if @current_entry == nil %>
-  <%= link_to "Clock In", new_time_entry_path %><br> 
-<% elsif @current_entry.status != 'active' %>
-  <%= link_to "Clock In", new_time_entry_path %><br> 
+<% if logged_in?(:admin) %>
+  <%= render 'admin_home' %>
+<% else %>
+  <%= render 'employee_home' %>
 <% end %>
-
-<% if @current_entry != nil %>
-
-  <%= link_to "Switch Task", switch_task_path(@current_entry) if @current_entry.status == 'active' %><br>
-  <%= link_to "Clock Out", clock_out_path(@current_entry) if @current_entry.status == 'active' %><br>
-<% end %>
-
-<%# if @current_entry.end_time == nil %>
-  <%#= @current_entry.inspect %>
-<%# end %>
-
-<% @entries.each do |entry| %>
-  <%= entry.start_time.strftime("%D %l:%M %p") %>
-  <%= entry.end_time.strftime("%D %l:%M %p") if entry.end_time != nil %>
-  <%= entry.status %>
-  <%= link_to "EDIT", edit_time_entry_path(entry) %>
-  <%= link_to "DELETE", entry, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <br>
-  <% if entry != @current_entry %>
-    <button onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
-  <% end %>
-  <div id="myDIV<%= entry.id %>">
-<table class="table table-bordered">
-  	<tr>
-      <th>Job</th>
-	  	<th>Task</th>
-	  	<th>Start Time</th>
-	  	<th>End Time</th>
-	</tr>
-	<% entry.task_entries.each do |task| %>
-	<tr>
-      <td><%= task.job.job_name %></td>
-	  	<td><%= task.task.title %></td>
-	  	<td><%= task.start_time.strftime("%I:%M %p") %></td>
-	  	<td><%= task.end_time.strftime("%I:%M %p") unless !task.end_time %></td>
-	  <% end %>
-	  </tr>
-  </table>
-  </div>
-  <hr>
-<% end %>
-
-<% @entries.each do |e| %>
-  <% if e != @current_entry %>
-    <script>
-    	$( document ).ready(toggleHideShow("<%= e.id %>"));
-    </script>
-  <% end %>
-<% end %>
-

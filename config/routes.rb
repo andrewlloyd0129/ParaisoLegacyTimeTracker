@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :users
+    resources :jobs
+    resources :jobs_csvs
+    resources :tasks
+    resources :task_entries
+    resources :time_entries
+
+    root to: "users#index"
+  end
+
   resources :jobs_csvs
   resources :task_entries
   resources :time_entries
@@ -17,7 +28,7 @@ Rails.application.routes.draw do
 
   root to: 'time_entries#index'
 
-  devise_for :users
+  devise_for :users, skip: [:registrations]
   
   resources :jobs do
     member do

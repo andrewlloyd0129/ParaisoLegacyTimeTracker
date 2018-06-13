@@ -2,15 +2,22 @@
   <li class="nav-item ">
     <%= link_to 'Home', root_path, class: "nav-link #{active?(root_path)}" %>
   </li>
+  <% if logged_in?(:admin) %>
   <li class="nav-item ">
-    <%= link_to 'Tasks/Employees', tasks_path, class: "nav-link #{active?(tasks_path)}" %>
+    <%= link_to 'Tasks', tasks_path, class: "nav-link #{active?(tasks_path)}" %>
   </li>
   <li class="nav-item">
     <%= link_to 'Jobs', jobs_path, class: "nav-link #{active?(jobs_path)}" %>
   </li>
+  <% end %>
   <li class="nav-item">
     <%= link_to 'Archive', pages_archive_path, class: "nav-link #{active?(pages_archive_path)}" %>
   </li>
+  <% if logged_in?(:admin) %>
+  <li class="nav-item">
+    <%= link_to 'Employees', admin_root_path, class: "nav-link" %>
+  </li>
+  <% end %>
   <li class="nav-item ml-md-auto">
     <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link', styles: 'align-right' %>
   </li>

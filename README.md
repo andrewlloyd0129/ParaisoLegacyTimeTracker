@@ -38,3 +38,7 @@ The Total Price for the above services totals * paid 50% down and 50% upon deliv
 Optional
 - * - monthly service charge for hosting and services
 - * – 6 month service and hosting contract ($30 / month) ß
+
+# TODO
+- [ ] issue with new task entry when nothing chosen
+- [ ] clock out has extra time field?
