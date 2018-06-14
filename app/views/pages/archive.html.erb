@@ -1,3 +1,15 @@
 <table class="table table-bordered">
-<%= render :partial => "time_entry_item", :collection => @entries %>
+
+	<%= search_form_for(@q, url: pages_archive_path, html: { method: :get }) do |f| %>
+
+	
+	<%= f.search_field :task_entries_job_job_name_cont %>
+
+	<%= f.label :status%>
+	<%= f.select :status_eq, TimeEntry.statuses.to_a.map { |w| [w[0].humanize, w[1]] },
+	{:include_blank => true} %>
+	<%= f.submit %>
+	<% end %>
+
+	<%= render :partial => "time_entry_item", :collection => @entries %>
 </table>
