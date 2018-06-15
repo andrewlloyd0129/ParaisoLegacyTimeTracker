@@ -43,3 +43,6 @@ Optional
 - [ ] Issue with new task entry when nothing chosen
 - [ ] Clock out has extra time field?
 - [ ] Mobile screen size nav dropdown
+- [ ] Jobs
+    • [ ] Redirects
+    • [ ] Delete button

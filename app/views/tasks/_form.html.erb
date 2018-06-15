@@ -1,7 +1,20 @@
+<div class="card border-secondary bg-light mx-auto" style="width: 15rem;">
+  <div class='card-body'>
     <%= form_for @task do |f| %>
-
-        <%= f.text_field :title,  placeholder: "Name of Task" %><br />
-
-    <%= f.submit "Submit" %>
-
-  <% end %>
+    <div>
+      <% if @task.errors.any? %>
+        <% @task.errors.full_messages.each do |error| %>
+          <%= alert_generator error %>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <%= f.text_field :title,  placeholder: "Name of Task", class: 'form-control' %>
+    </div>
+    <br>
+    <div>
+      <%= f.submit "Submit", class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+  </div>
+</div>
