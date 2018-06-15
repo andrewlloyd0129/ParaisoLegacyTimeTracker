@@ -40,5 +40,6 @@ Optional
 - * – 6 month service and hosting contract ($30 / month) ß
 
 # TODO
-- [ ] issue with new task entry when nothing chosen
-- [ ] clock out has extra time field?
+- [ ] Issue with new task entry when nothing chosen
+- [ ] Clock out has extra time field?
+- [ ] Mobile screen size nav dropdown
