@@ -1,6 +1,6 @@
 
 10.times do |job|
-  Job.create!(job_number: (14000 + job), job_name: "andrew #{job}")
+  Job.create!(job_number: (14000 + job), job_name: Faker::Address.street_name)
 end
 
 puts "10 jobs created"
@@ -18,7 +18,7 @@ puts "1 admin user created"
 
 
 10.times do |task|
-  Task.create!(title: "I made a task #{task}")
+  Task.create!(title: Faker::Job.field)
 end
 
 puts "10 tasks created"
@@ -28,7 +28,7 @@ puts "10 tasks created"
      email: "test#{i}@test.com",
      password: "asdfasdf",
      password_confirmation: "asdfasdf",
-     full_name: "regUser #{i}",
+     full_name: Faker::FunnyName.two_word_name,
      wage: 15 + i
   )
      14.times do |j|
@@ -40,9 +40,9 @@ puts "10 tasks created"
         2.times do |k|
           TaskEntry.create!(  start_time: Time.now,
                     end_time: Time.now,
-                    task: Task.find_by_id(k + 1),
+                    task_id: rand(1..10),
                     time_entry: TimeEntry.last,
-                    job_id: k + 1
+                    job_id: rand(1..10)
           )
       end
     end

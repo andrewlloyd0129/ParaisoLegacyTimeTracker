@@ -1,5 +1,5 @@
     <%= form_for @report do |f| %>
-    <% if @payrollburden %>
+    <% if @payroll_burden.payrollburden %>
         <%= f.number_field :payrollburden, :value => @payroll_burden.payrollburden  %>%<br />
     <% else %>
         <%= f.number_field :payrollburden%>%<br />

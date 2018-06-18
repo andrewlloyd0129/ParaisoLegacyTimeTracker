@@ -9,8 +9,7 @@ class JobsCsvsController < ApplicationController
       respond_to do |format|
         format.html
         format.csv do |version|
-          send_data Job.last.to_csv 
-
+        send_data Job.last.to_csv 
       end
           
       end
@@ -35,6 +34,6 @@ class JobsCsvsController < ApplicationController
     private
 
       def report_params
-      params.require(:jobs_csv).permit(:csv, :payrollburden)
+      params.require(:jobs_csv).permit(:csv, :payrollburden,:job_id)
     end
 end
