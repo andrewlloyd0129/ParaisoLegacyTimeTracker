@@ -1,20 +1,27 @@
-Switch Task
+<div class="text-center">
+  <h1>Switch Task</h1>
+  <div class="card border-secondary bg-light mx-auto" style="width: 15rem;">
+    <div class='card-body'>
+      <%= form_for(@entry, url: switch_task_update_path, method: :put) do |f| %>
 
-<%= form_for(@entry, url: switch_task_update_path, method: :put) do |f| %>
-
-  <%= f.fields_for :task_entries do |f|  %>
-  	<% if !f.object.end_time %>
-    	<%= render 'task_entry_out', f: f %>
-    <% end %>
-  <% end %>
+      <%= f.fields_for :task_entries do |f|  %>
+        <% if !f.object.end_time %>
+          <%= render 'task_entry_out', f: f %>
+        <% end %>
+      <% end %>
 
 
- <div id="myDIVswitch"> <%= link_to_add_association 'Add Task Entry', f, :task_entries, partial: 'task_entry_create' %> </div>
+      <div id="myDIVswitch"> <%= link_to_add_association 'Add Task Entry', f, :task_entries, partial: 'task_entry_create' %> </div>
 
-<%= f.submit "Confirm" %>
+      <%= f.submit "Confirm", class: 'btn btn-primary' %>
 
-<% end %>
-<script>
-	$(document).ready(function() { $(".add_fields").click() } );
-	$(document).ready(toggleHideShow("switch"));
-</script>
+      <% end %>
+      <% if %>
+      <script>
+       $(document).ready(function() { $(".add_fields").click() } );
+       $(document).ready(toggleHideShow("switch"));
+     </script>
+     <% end %>
+   </div>
+ </div>
+</div>
