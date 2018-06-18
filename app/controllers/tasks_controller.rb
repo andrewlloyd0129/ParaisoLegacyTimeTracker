@@ -7,7 +7,7 @@ class TasksController < ApplicationController
    @users = User.all
   end
   
-  def new_page
+  def test
     
   end
 
