@@ -20,7 +20,7 @@ class TimeEntriesController < ApplicationController
     if @entry.save
       redirect_to time_entries_path
     else
-      render :new
+      redirect_to new_time_entry_path
     end
   end
 
@@ -68,7 +68,7 @@ class TimeEntriesController < ApplicationController
       @entry.save
       redirect_to time_entries_path, notice: 'Task Switched'
     else
-      render :edit, notice: 'Error submitting your request'
+      redirect_to :switch_task
     end
   end
 

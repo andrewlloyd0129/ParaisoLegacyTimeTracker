@@ -19,10 +19,12 @@
   </li>
   <% end %>
   <li class="nav-item ml-md-auto">
+    <div class='nav-link' styles="align-right">Logged in as <%= current_user.full_name %></div>
+  </li>
+  <li class="nav-item ml-md-auto">
     <%= link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link', styles: 'align-right' %>
   </li>
 </ul>
 
-<div>Logged in as <%= current_user.full_name %></div>
 
 
