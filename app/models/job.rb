@@ -1,6 +1,7 @@
 class Job < ApplicationRecord
   enum status: { active: 0, inactive: 1}
   has_many :task_entries
+  has_many :jobs_csvs
 
   validates_presence_of :job_name, :job_number
 

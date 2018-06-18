@@ -1,4 +1,16 @@
-<% @jobs.each do |job| %>
-  <%= link_to "#{job.job_number} #{job.job_name}", jobs_csv_path(job) %>
-
+<table class="table table-bordered">
+  <tr>
+    <th>Job Name</th>
+    <th>Job Number</th>
+    <th>Date Created</th>
+    <th>Download Report</th>
+  </tr>
+<% @reports.each do |report| %>
+  <tr>
+    <td><%= report.job.job_number%></td>
+    <td><%= report.job.job_name%></td>
+    <td><%= report.created_at%></td>
+    <td><%= link_to "Download", jobs_csv_path(report, :format => :csv)%></td>
+  </tr>
 <% end %>
+</table>
