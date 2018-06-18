@@ -1,20 +1,25 @@
 class JobsCsvsController < ApplicationController
 
     def index
-    @jobs = Job.order(job_number: :asc)
+    @reports = JobsCsv.all
     end
 
     def show
-      @task_entries = TaskEntry.where(job_id: JobsCsv.last.job_id)
+      @report = JobsCsv.find(params[:id])
+      @task_entries = TaskEntry.where(job_id: @report.job_id)
       respond_to do |format|
         format.html
         format.csv do |version|
-          send_data Job.last.to_csv 
+          send_data @report.job.to_csv 
 
       end
           
       end
       # redirect_to jobs_path
+    end
+
+    def download
+      redirect_to jobs_csvs_path(@report, format: :csv)
     end
 
     def new
@@ -25,7 +30,7 @@ class JobsCsvsController < ApplicationController
     def create
       @report = JobsCsv.new(report_params)
       if @report.save
-        redirect_to jobs_csv_path(@report, format: :csv)
+        redirect_to jobs_csvs_path
       else
         render :new
       end
@@ -35,6 +40,6 @@ class JobsCsvsController < ApplicationController
     private
 
       def report_params
-      params.require(:jobs_csv).permit(:csv, :payrollburden)
+      params.require(:jobs_csv).permit(:csv, :payrollburden, :job_id)
     end
 end

@@ -1,6 +1,7 @@
 <h1>Jobs</h1>
 <div>
   <%= link_to "New Job", new_job_path, class: 'btn btn-primary' %>
+  <%= link_to "Generate Job Costing Report", new_jobs_csv_path, class: 'btn btn-primary' %>
 </div>
 <br>
 <div>
@@ -12,7 +13,7 @@
     <th>Status</th>
     <th>Edit</th>
     <th>Toggle Status</th>
-    <th>Reports</th>
+    <th>Delete</th>
 
   </tr>
 <% @jobs.each do |job| %>
@@ -21,9 +22,10 @@
     <td><%= job.job_name%></td>
     <td><%= job.status%></td>
 
+
     <td><%= link_to "Edit", edit_job_path(job), class: 'btn btn-warning form-control' %></td>
     <td><%= link_to "Toggle Status", toggle_status_job_path(job), class: 'btn btn-success form-control' %></td>
-      <td><%= link_to "Generate Report", new_jobs_csv_path, {:controller => "job_csv", :action => "new", :job => {:job_id => job.id}, class: 'btn btn-info form-control'} %></td>
+
   </tr>
 <% end %>
 </table>
