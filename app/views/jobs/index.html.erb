@@ -6,6 +6,7 @@
 <div>
 <table class="table table-bordered">
   <tr>
+    <th>id</th>
     <th>Number</th>
     <th>Name</th>
     <th>Status</th>
@@ -16,12 +17,15 @@
   </tr>
 <% @jobs.each do |job| %>
   <tr>
+    <td><%= job.id%></td>
     <td><%= job.job_number%></td>
     <td><%= job.job_name%></td>
     <td><%= job.status%></td>
-    <td><%= link_to "Edit", edit_job_path(job), class: 'btn btn-warning form-control' %></td>
-    <td><%= link_to "Toggle Status", toggle_status_job_path(job), class: 'btn btn-success form-control' %></td>
-    <td><%= link_to "Generate Report", jobs_csv_path(job, format: "csv"), class: 'btn btn-info form-control' %></td
+
+    <td><%= link_to "Toggle Status", toggle_status_job_path(job) %></td>
+    <td><%= link_to "Edit", edit_job_path(job) %></td>
+      <td><%= link_to "Generate Report", new_jobs_csv_path, {:controller => "job_csv", :action => "new", :job => {:job_id => job.id}} %></td>
+    <td><%= link_to "Delete", job, method: :delete, data:  {confirm: "Are you sure you want to delete?"} %></td>
   </tr>
 <% end %>
 </table>

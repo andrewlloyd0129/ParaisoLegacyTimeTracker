@@ -2,9 +2,11 @@ class TimeEntriesController < ApplicationController
   before_action :set_entry, only: [:edit, :update, :destroy, :clock_out, :clock_out_update, :switch_task, :switch_task_update, :admin_approve, :admin_reject]
 
   def index
-    @entries = TimeEntry.where(user_id: current_user.id)
+    current_user.has_roles?(:admin) ? @entries = TimeEntry.order(start_time: :desc) : @entries = TimeEntry.where(user_id: current_user.id).order(start_time: :desc)
     @current_entry = TimeEntry.where(user_id: current_user.id, end_time: nil).last
     @pending = TimeEntry.where(status: 'pending')
+    @todays_entries = TimeEntry.todays_entries @entries
+    @weeks_entries = TimeEntry.this_weeks_entries @entries
 
   end
 

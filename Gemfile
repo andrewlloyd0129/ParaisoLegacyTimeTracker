@@ -33,8 +33,7 @@ gem 'petergate', '~> 1.8', '>= 1.8.1'
 gem 'bootstrap', '~> 4.1', '>= 4.1.1'
 gem 'jquery-rails'
 gem 'gritter', '~> 1.2'
-
 gem 'cocoon', '~> 1.2', '>= 1.2.9'
-
 gem 'administrate', '~> 0.10.0'
 gem 'bourbon'
+gem 'ransack', '~> 1.7'

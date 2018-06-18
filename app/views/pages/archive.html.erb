@@ -1,2 +1,19 @@
-<h1>Pages#archive</h1>
-<p>Find me in app/views/pages/archive.html.erb</p>
+<table class="table table-bordered">
+
+	<%= search_form_for(@q, url: pages_archive_path, html: { method: :get }) do |f| %>
+
+	
+	<%= f.search_field :task_entries_job_job_name_or_task_entries_task_title_cont %>
+
+	<%= f.label :status%>
+	<%= f.select :status_eq, TimeEntry.statuses.to_a.map { |w| [w[0].humanize, w[1]] },
+	{:include_blank => true} %>
+
+  <%#= f.text_field :start_time_gteq %>
+  <%#= f.text_field :start_time_lteq, 'datepicker' => true %>
+
+	<%= f.submit %>
+	<% end %>
+
+	<%= render :partial => "time_entry_item", :collection => @entries %>
+</table>

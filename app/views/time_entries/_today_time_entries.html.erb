@@ -1,0 +1,3 @@
+<H1>Today (  <%= weekday(Time.now.wday) %> )</H1>
+  
+<%= render :partial => "time_entry_item", :collection => @todays_entries %>

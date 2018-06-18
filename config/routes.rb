@@ -47,5 +47,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pages do
+  collection do
+    match 'search' => 'pages#search', via: [:get, :post], as: :search
+  end
+end
+
   
 end

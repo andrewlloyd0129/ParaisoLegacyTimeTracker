@@ -1,0 +1,35 @@
+<h4 class="inline"><%= weekday(time_entry_item.start_time.wday) %></h4>
+  <%= time_entry_item.start_time.strftime("%D %l:%M %p") %>
+  <%= time_entry_item.end_time.strftime("%D %l:%M %p") if time_entry_item.end_time != nil %>
+  <%= time_entry_item.status %>
+  <%= link_to "EDIT", edit_time_entry_path(time_entry_item) %>
+  <%= link_to "DELETE", time_entry_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <br>
+  <% if time_entry_item != @current_entry %>
+    <button onclick="toggleHideShow(<%= time_entry_item.id %>)">show/hide details</button>
+  <% end %>
+  <div id="myDIV<%= time_entry_item.id %>">
+<table class="table table-bordered">
+    <tr>
+      <th>Job</th>
+      <th>Task</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+  </tr>
+  <% time_entry_item.task_entries.each do |task| %>
+  <tr>
+      <td><%= task.job.job_name %></td>
+      <td><%= task.task.title %></td>
+      <td><%= task.start_time.strftime("%I:%M %p") %></td>
+      <td><%= task.end_time.strftime("%I:%M %p") unless !task.end_time %></td>
+    <% end %>
+    </tr>
+  </table>
+  </div>
+  <br>
+
+  <% if time_entry_item != @current_entry %>
+    <script>
+      $( document ).ready(toggleHideShow("<%= time_entry_item.id %>"));
+    </script>
+  <% end %>
