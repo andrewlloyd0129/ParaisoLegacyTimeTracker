@@ -31,7 +31,7 @@ Database Functionality for:
 - [ ] Task Entry
 
 Styling
-- [ ] Basic Bootstrap for site functionality
+- [MRR] Basic Bootstrap for site functionality
 
 The Total Price for the above services totals * paid 50% down and 50% upon delivery.
 

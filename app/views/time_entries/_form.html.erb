@@ -1,20 +1,31 @@
-<%= form_for @entry do |f| %>
+<div class="card border-secondary bg-light mx-auto" style="width: 15rem;">
+  <div class='card-body'>
+    <%= form_for @entry do |f| %>
+    <div>
+      <% if @entry.errors.any? %>
+        <% @entry.errors.full_messages.each do |error| %>
+          <%= alert_generator error %>
+        <% end %>
+      <% end %>
+    </div>
 
-<%= f.text_field :start_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
+    <%= f.text_field :start_time, value: Time.now.strftime("%l:%M %p"), readonly: true, class: 'form-control' %>
+    <div class="form-group">
+      <%= f.fields_for :task_entries do |task|  %>
+        <%= render 'task_entry_fields', f: task %>
+      <% end %> 
+    </div>
 
-<%= f.fields_for :task_entries do |task|  %>
-    <%= render 'task_entry_fields', f: task %>
-  <% end %>
+    <div id="myDIVadd"> <%= link_to_add_association 'Add Task Entry', f, :task_entries, partial: 'task_entry_create' %> </div>
 
+    <%= f.submit "Confirm", class: 'btn btn-primary' %>
 
-<div id="myDIVadd"> <%= link_to_add_association 'Add Task Entry', f, :task_entries, partial: 'task_entry_create' %> </div>
+    <script>
+     $(document).ready(function() { $(".add_fields").click() } );
+     $( document ).ready(toggleHideShow("add"));
 
-<%= f.submit "Confirm" %>
+   </script>
 
-<script>
-	$(document).ready(function() { $(".add_fields").click() } );
-	$( document ).ready(toggleHideShow("add"));
-
-</script>
-
-<% end %>
+   <% end %>
+ </div>
+</div>

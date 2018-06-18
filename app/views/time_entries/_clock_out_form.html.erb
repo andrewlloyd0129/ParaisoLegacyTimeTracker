@@ -1,9 +1,11 @@
-Clocked In at:
-<%= @current_entry.start_time.strftime("%l:%M %p") %>
-
+<div class="card border-secondary bg-light mx-auto" style="width: 15rem;">
+  <div class='card-body'>
 <%= form_for(@current_entry, url: clock_out_update_path, method: :put) do |f| %>
+Clocked In at:
+<%= f.text_field :start_time, value: f.object.start_time.strftime("%l:%M %p"), readonly: true, class: 'form-control' %>
+<br>
 Clocked Out at:
-<%= f.text_field :end_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
+<%= f.hidden_field :end_time, value: Time.now.strftime("%l:%M %p"), readonly: true%>
 
 
 
@@ -14,6 +16,8 @@ Clocked Out at:
   <% end %>
 
 
-<%= f.submit "Confirm" %>
+<%= f.submit "Confirm", class: 'btn btn-primary' %>
 
 <% end %>
+</div>
+</div>
