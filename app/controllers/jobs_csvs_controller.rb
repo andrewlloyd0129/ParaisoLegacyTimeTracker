@@ -5,16 +5,19 @@ class JobsCsvsController < ApplicationController
     end
 
     def show
-      @job = Job.find(params[:id])
-      @task_entries = TaskEntry.where(job_id: @job.id)
+      @task_entries = TaskEntry.where(job_id: JobsCsv.last.job_id)
       respond_to do |format|
         format.html
-        format.csv { send_data @job.to_csv }
+        format.csv do |version|
+          send_data Job.last.to_csv 
+
       end
+          
+      end
+      # redirect_to jobs_path
     end
 
     def new
-      # @job = Job.find(params[:id])
       @report = JobsCsv.new
       @payroll_burden = JobsCsv.last
     end
@@ -22,7 +25,7 @@ class JobsCsvsController < ApplicationController
     def create
       @report = JobsCsv.new(report_params)
       if @report.save
-        redirect_to jobs_csv_path(@report), format: :csv
+        redirect_to jobs_csv_path(@report, format: :csv)
       else
         render :new
       end

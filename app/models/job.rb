@@ -9,7 +9,7 @@ class Job < ApplicationRecord
       self.task_entries.each do |entry|
         csv << entry.attributes.values_at(*column_names)
 
+      end
     end
-  end
   end
 end
