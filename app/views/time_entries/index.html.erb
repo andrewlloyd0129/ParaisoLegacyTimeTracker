@@ -1,7 +1,7 @@
 <% if logged_in?(:admin) %>
   <%= render 'admin_home' %>
 <% else %>
-  <%= render 'employee_home' %>
+  <%#= render 'employee_home' %>
 <% end %>
 
 <% if @current_entry == nil %>

@@ -48,44 +48,4 @@ puts "10 tasks created"
     end
 end
 
-puts "2 regular user created"
-
-10.times do |task|
-  Task.create!(title: "I made a task #{task}")
-end
-
-puts "10 tasks created"
-
-2.times do |i|
-	TimeEntry.create!( 	start_time: Time.now,
-						end_time: Time.now,
-						user_id: 2,
-            status: 'approved'
-		)
-	2.times do |j|
-		TaskEntry.create!( 	start_time: Time.now,
-							end_time: Time.now,
-							task: Task.find_by_id(j + 1),
-							time_entry: TimeEntry.last,
-              job_id: 1
-			)
-	end
-end
-
-2.times do |i|
-TimeEntry.create!(  start_time: Time.now,
-          end_time: Time.now,
-          user_id: 3,
-          status: 'approved'
-  )
-  2.times do |j|
-    TaskEntry.create!(  start_time: Time.now,
-              end_time: Time.now,
-              task: Task.find_by_id(j + 1),
-              time_entry: TimeEntry.last,
-              job_id: 2
-      )
-  end
-
-end
-  puts "4 task entries created"
+puts "2 regular user created with 14 time entries each and 2 task entries per time entry"
