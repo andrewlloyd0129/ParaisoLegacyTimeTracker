@@ -6,6 +6,10 @@ class TasksController < ApplicationController
    @tasks = Task.all
    @users = User.all
   end
+  
+  def new_page
+    
+  end
 
 
   def new
