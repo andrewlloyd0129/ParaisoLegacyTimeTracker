@@ -11,7 +11,6 @@ class JobsCsvsController < ApplicationController
         format.html
         format.csv do |version|
           send_data @report.job.to_csv 
-
       end
           
       end
@@ -39,7 +38,7 @@ class JobsCsvsController < ApplicationController
 
     private
 
-      def report_params
-      params.require(:jobs_csv).permit(:csv, :payrollburden, :job_id)
+    def report_params
+      params.require(:jobs_csv).permit(:csv, :payrollburden,:job_id)
     end
 end

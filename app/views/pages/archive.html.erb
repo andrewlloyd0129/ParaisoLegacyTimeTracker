@@ -2,8 +2,10 @@
 
 	<%= search_form_for(@q, url: pages_archive_path, html: { method: :get }) do |f| %>
 
-	
-	<%= f.search_field :task_entries_job_job_name_or_task_entries_task_title_cont %>
+	<span>Search By Employee, Job, or Task:</span>
+	<%= f.search_field :task_entries_job_job_name_or_task_entries_task_title_or_user_full_name_cont %>
+	<span>Search By Job Number:</span>
+	<%= f.search_field :task_entries_job_job_number_eq %>
 
 	<%= f.label :status%>
 	<%= f.select :status_eq, TimeEntry.statuses.to_a.map { |w| [w[0].humanize, w[1]] },
