@@ -1,3 +1,4 @@
+<% if @pending[0] != nil %>
 <h1>Pending Time Changes</h1>
 <% @pending.each do |entry| %>
   <%= link_to "Approve", admin_approve_time_entry_path(entry), class: 'btn btn-success' %>
@@ -32,4 +33,6 @@
     <script>
       $( document ).ready(toggleHideShow("<%= e.id %>"));
     </script>
+<% end %>
+<hr>
 <% end %>

@@ -46,4 +46,8 @@ Optional
 - [ ] Jobs
     • [ ] Redirects
     • [X] Delete button
-- [ ] active/inactive tables?
+- [ ] Active/inactive tables?
+- [ ] Job params for clocking in
+- [ ] Dont show pending on index
+- [ ] Weird indent when logged in as regular user
+- [ ] Time Entries date incorrect
