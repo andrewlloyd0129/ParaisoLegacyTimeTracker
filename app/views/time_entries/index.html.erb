@@ -3,7 +3,23 @@
 <% else %>
 <%#= render 'employee_home' %>
 <% end %>
+<div class="row">
+<% if @rejected[0] != nil %>
+<div class="col-md-6 alert alert-danger">
+  <h1>You have Rejected time entries, please edit or delete.</h1>
+    <%= render 'rejected' %>
+</div>
+<% end %>
+
+<% if @pending.where(user_id: current_user.id)[0] != nil %>
+<div class="col-md-6 alert alert-warning">
+  <h1>Your Pending time entries</h1>
+  <%= render 'pending' %>
+</div>
+<% end %>
+</div>
 <% if !logged_in?(:admin) %>
+<div>
 <div class="text-center">
   <div class="card border-secondary bg-light" style="width: 10rem;">
     <div class='card-body'>
@@ -41,3 +57,4 @@
   <% end %>
   <% x = entry.start_time %>
 <% end %>
+</div>

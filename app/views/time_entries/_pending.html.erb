@@ -1,0 +1,32 @@
+<% @pending.where(user_id: current_user.id).each do |entry| %>
+  <h4 class="inline">
+    <%= weekday(entry.start_time.wday) %>
+  </h4>
+  <%= entry.status %>
+  <br>
+  <%= entry.start_time.strftime("%D %l:%M %p") %><br>
+  <%= entry.end_time.strftime("%D %l:%M %p") if entry.end_time != nil %>
+  <div style="margin-bottom: .5em;">
+  <%= link_to "EDIT", edit_time_entry_path(entry), class: 'btn btn-warning' %>
+  <%= link_to "DELETE", entry, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+</div>
+    <button class='btn btn-primary' onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
+  <div id="myDIV<%= entry.id %>">
+<table class="table table-bordered table-light">
+    <tr>
+      <th>Job</th>
+      <th>Task</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+  </tr>
+  <% entry.task_entries.each do |task| %>
+  <tr>
+      <td><%= task.job.job_name %></td>
+      <td><%= task.task.title %></td>
+      <td><%= task.start_time.strftime("%l:%M %p") %></td>
+      <td><%= task.end_time.strftime("%l:%M %p") unless !task.end_time %></td>
+    <% end %>
+    </tr>
+  </table>
+  </div>
+<% end %>

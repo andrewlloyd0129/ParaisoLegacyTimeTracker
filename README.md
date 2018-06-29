@@ -43,21 +43,13 @@ Optional
 - [X] Issue with new task entry when nothing chosen
 - [X] Clock out has extra time field?
 - [ ] Mobile screen size nav dropdown
-<<<<<<< HEAD
-- [ ] Jobs
-    • [ ] Redirects
-=======
 - [X] Jobs
     • [X] Redirects
->>>>>>> fd4ae8409e39e0932304d455e31f74190f5943e0
     • [X] Delete button
-- [ ] Active/inactive tables?
-- [ ] Job params for clocking in
+- [X] Job params for clocking in
+- [X] Weird indent when logged in as regular user
+- [X ] Time Entries date incorrect
+- [X] Delete/Edit buttons on achives page?
+- [X] Tasks ordered by A-Z
 - [ ] Dont show pending on index
-- [ ] Weird indent when logged in as regular user
-<<<<<<< HEAD
-- [ ] Time Entries date incorrect
-=======
-- [ ] Time Entries date incorrect
-- [ ] Delete/Edit buttons on achives page?
->>>>>>> fd4ae8409e39e0932304d455e31f74190f5943e0
+- [ ] Reject edit funtion
