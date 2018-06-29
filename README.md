@@ -10,7 +10,7 @@ Pages for:
 - [ ] Login
 - [MRR] Admin Dashboard
 - [MRR] User Dashboard
-- [ ] Archive of Time Entries and requests with searchability 
+- [WRN] Archive of Time Entries and requests with searchability 
 
 Create, Read, Update, and Destroy Functionality for:
 - [ABL] Task
@@ -18,7 +18,7 @@ Create, Read, Update, and Destroy Functionality for:
 - [ABL] Jobs
 - [MRR] User Specific Time Entry with unchangeable clock in and out times
 - [MRR] Time Requests with all fields editable to be submitted to site admin for approval
-- [ ] Task Entry (to switch tasks without requiring clocking out)
+- [WRN] Task Entry (to switch tasks without requiring clocking out)
 
 Database Functionality for:
 - [ABL] Task
@@ -27,8 +27,8 @@ Database Functionality for:
 - [MRR] Users
 - [MRR] Admin Dash
 - [MRR] User Dash
-- [ ] Archive
-- [ ] Task Entry
+- [WRN] Archive
+- [WRN] Task Entry
 
 Styling
 - [MRR] Basic Bootstrap for site functionality
@@ -53,3 +53,9 @@ Optional
 - [X] Tasks ordered by A-Z
 - [ ] Dont show pending on index
 - [ ] Reject edit funtion
+- [ ] Active/inactive tables?
+- [WRN] Job params for clocking in
+- [ ] Dont show pending on index
+- [ ] Weird indent when logged in as regular user
+- [ Matt is stoned ] Time Entries date incorrect
+- [WRN] Delete/Edit buttons on achives page?
