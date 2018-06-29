@@ -1,16 +1,29 @@
-<%= form_for @entry do |f| %>
-Clocked In:
-<%= f.datetime_field :start_time %><br>
-Clocked Out:
-<%= f.datetime_field :end_time %><br>
+<h1>Time Change Request</h1>
+<div class="card border-secondary bg-light mx-auto container" style="width: 35rem;">
+  <div class='card-body'>
+    <%= form_for @entry do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        Clocked In:
+        <%= f.datetime_field :start_time, class: 'form-control' %><br>
+      </div>
+      <div class="col-md-6">
+        Clocked Out:
+        <%= f.datetime_field :end_time, class: 'form-control' %><br>
+      </div>
+    </div>
 
-  <%= f.fields_for :task_entries do |task|  %>
-    <%= render 'task_entry_fields', f: task %>
-  <% end %>
+    <%= f.fields_for :task_entries do |task|  %>
+      <%= render 'task_entry_fields', f: task %>
+    <% end %>
 
 
-<div> <%= link_to_add_association 'Add Task Entry', f, :task_entries %> </div>
+    <div> <%= link_to_add_association 'Add Task Entry', f, :task_entries, class: 'btn btn-success btn-sm' %> </div>
 
-<%= f.submit "Confirm" %>
+    <hr>
 
-<% end %>
+    <%= f.submit "Confirm", class: 'btn btn-primary' %>
+
+    <% end %>
+  </div>
+</div>

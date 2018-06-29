@@ -1,11 +1,24 @@
 <div class="form-group nested-fields">
+  <div class="row">
+    <div class="col-md-6">
+      Task Start/End Time:
+      <%= f.datetime_field :start_time, class: 'form-control' %>
+    </div>
 
-    <%= f.datetime_field :start_time %>
-    <%= f.datetime_field :end_time %>
+    <div class="col-md-6">
+      Task/Job:
+      <%= f.collection_select(:task_id, Task.where(status: "active"), :id, :title, {:include_blank => "Task Select"}, {class: 'form-control'}) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.datetime_field :end_time, class: 'form-control' %> 
+    </div>
 
-    <%= f.collection_select(:task_id, Task.where(status: "active"), :id, :title, :include_blank => "Task Select") %>
+    <div class="col-md-6">
+      <%= f.collection_select(:job_id, Job.where(status: "active"), :id, :job_name, {:include_blank => "Job Select"}, {class: 'form-control'}) %>
+    </div>
+  </div>
 
-    <%= f.collection_select(:job_id, Job.where(status: "active"), :id, :job_name, :include_blank => "Job Select") %>
-	
-	<%= link_to_remove_association 'Remove Task', f %>
+  <%= link_to_remove_association 'Remove Task', f, class: 'btn btn-danger btn-sm' %>
 </div>
