@@ -38,7 +38,7 @@ puts "10 tasks created"
                 status: 'approved'
         )
         2.times do |k|
-          TaskEntry.create!(  start_time: Time.now,
+          TaskEntry.create!(  start_time: Time.now - (2*360),
                     end_time: Time.now,
                     task_id: rand(1..10),
                     time_entry: TimeEntry.last,

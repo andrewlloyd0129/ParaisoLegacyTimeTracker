@@ -4,9 +4,9 @@
   <td style="width: 2.66%"><%= time_entry_item.start_time.strftime("%D %l:%M %p") %></td>
   <td style="width: 2.66%"><%= time_entry_item.end_time.strftime("%D %l:%M %p") if time_entry_item.end_time != nil %></td>
   <td style="width: 6%"><%= time_entry_item.status %></td>
-  <td style="width: 5%"><%= link_to "EDIT", edit_time_entry_path(time_entry_item) %></td>
-  <td style="width: 5%"><%= link_to "DELETE", time_entry_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <td style="width: 25.66%"><button onclick="toggleHideShow(<%= time_entry_item.id %>)">show/hide details</button>
+  <td style="width: 5%"><%= link_to "EDIT", edit_time_entry_path(time_entry_item), class: 'btn btn-warning form-control' %></td>
+  <td style="width: 5%"><%= link_to "DELETE", time_entry_item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger form-control' %></td>
+  <td style="width: 25.66%"><button class="btn btn-primary form-control" onclick="toggleHideShow(<%= time_entry_item.id %>)">show/hide details</button>
     <div id="myDIV<%= time_entry_item.id %>">
       <table class="table table-bordered">
         <tr>
@@ -27,7 +27,6 @@
     </div>
   </td>
 </tr>
-
 <% if time_entry_item != @current_entry %>
 <script>
   $( document ).ready(toggleHideShow("<%= time_entry_item.id %>"));
