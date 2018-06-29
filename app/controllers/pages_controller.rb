@@ -11,7 +11,7 @@ class PagesController < ApplicationController
 
   	@entries = @q.result(distinct: true)
 
-    @entries = @entries.select { |entry| entry.user_id == current_user.id }
+    @entries = @entries.select { |entry| entry.user_id == current_user.id } unless current_user.has_role?(:admin)
   	
   end
 end
