@@ -17,7 +17,7 @@
         </tr>
         <% time_entry_item.task_entries.each do |task| %>
         <tr>
-          <td><%= task.job.job_name %></td>
+          <td><%= task.job != nil ? task.job.job_name : "N/A" %></td>
           <td><%= task.task.title %></td>
           <td><%= task.start_time.strftime("%I:%M %p") %></td>
           <td><%= task.end_time.strftime("%I:%M %p") unless !task.end_time %></td>
