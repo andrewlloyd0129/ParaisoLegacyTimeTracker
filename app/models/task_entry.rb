@@ -1,7 +1,7 @@
 class TaskEntry < ApplicationRecord
   belongs_to :time_entry
   belongs_to :task
-  belongs_to :job, optional: true
+  belongs_to :job
 
   def calculate_fields
     wage
