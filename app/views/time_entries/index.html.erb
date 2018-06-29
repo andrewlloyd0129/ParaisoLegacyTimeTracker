@@ -1,21 +1,30 @@
 <% if logged_in?(:admin) %>
   <%= render 'admin_home' %>
 <% else %>
-  <%#= render 'employee_home' %>
+<%#= render 'employee_home' %>
 <% end %>
+<% if !logged_in?(:admin) %>
+<div class="text-center">
+  <div class="card border-secondary bg-light" style="width: 10rem;">
+    <div class='card-body'>
+      <% if @current_entry == nil %>
+        <%= link_to "Clock In", new_time_entry_path, class: 'btn btn-primary form-control' %><br> 
+      <% elsif @current_entry.status != 'active' %>
+        <%= link_to "Clock In", new_time_entry_path, class: 'btn btn-primary form-control' %><br> 
+      <% end %>
 
-<% if @current_entry == nil %>
-  <%= link_to "Clock In", new_time_entry_path %><br> 
-<% elsif @current_entry.status != 'active' %>
-  <%= link_to "Clock In", new_time_entry_path %><br> 
+      <% if @current_entry != nil %>
+      <div>
+        <%= link_to "Switch Task", switch_task_path(@current_entry), class: 'btn btn-success form-control' if @current_entry.status == 'active' %><br>
+      </div>
+      <div style="margin-top: .5em;">
+        <%= link_to "Clock Out", clock_out_path(@current_entry), class: 'btn btn-primary form-control' if @current_entry.status == 'active' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
-
-<% if @current_entry != nil %>
-
-  <%= link_to "Switch Task", switch_task_path(@current_entry) if @current_entry.status == 'active' %><br>
-  <%= link_to "Clock Out", clock_out_path(@current_entry) if @current_entry.status == 'active' %><br>
-<% end %>
-
 <% if @todays_entries %>
   <%= render 'today_time_entries' %>
 <% end %>
