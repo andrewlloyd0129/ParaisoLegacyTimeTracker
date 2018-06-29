@@ -20,6 +20,8 @@ class JobsController < ApplicationController
       end
   end
 
+  
+
   def edit
   end
   
