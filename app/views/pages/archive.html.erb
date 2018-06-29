@@ -1,6 +1,20 @@
 <table class="table table-bordered">
 
 	<%= search_form_for(@q, url: pages_archive_path, html: { method: :get }) do |f| %>
+		<div class="dropdown">
+		<a href="#" data-toggle="dropdown" class="dropdown-toggle">Sort By<strong class="caret"></strong></a>
+		<ul class="dropdown-menu">
+				<li>
+					<%= sort_link @q, :start_time, "Clock In"%>
+				</li>
+				<li>
+					<%= sort_link @q, :task_entries_job_job_name, "Job Name" %>
+				</li>
+				<li>
+					<%= sort_link @q, :task_entries_job_job_number, "Job Number", up_arrow: '<i>New to Old</i>' %>
+				</li>
+			</ul>
+		</div>
 	<div class="row">
 		<span class="col-md-3 text-center form-control-plaintext">Search By Employee, Job, or Task:</span>
 		<div class="col-md-2">
@@ -19,6 +33,7 @@
 		</div>
 		<%#= f.text_field :start_time_gteq %>
 		<%#= f.text_field :start_time_lteq, 'datepicker' => true %>
+
 		<div class="col-md-1">
 			<%= f.submit 'Search', class: 'btn btn-primary' %>
 		</div>
