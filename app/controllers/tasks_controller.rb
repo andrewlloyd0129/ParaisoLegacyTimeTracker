@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   access admin: :all
 
   def index
-   @tasks = Task.all
+   @tasks = Task.order(title: :asc)
    @users = User.all
   end
   

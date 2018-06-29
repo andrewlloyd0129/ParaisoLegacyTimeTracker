@@ -14,7 +14,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
       if @job.save
-        redirect_to job_path(@job)
+        redirect_to jobs_path
       else
         render :new
       end
@@ -28,7 +28,7 @@ class JobsController < ApplicationController
   def update
       if @job.update(job_params)
         @job.save
-        redirect_to @job, notice: 'Your job was edited successfully'
+        redirect_to jobs_path, notice: 'Your job was edited successfully'
       else
         render :edit, notice: "Error updating your job"
       end

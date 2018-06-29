@@ -46,6 +46,13 @@ Optional
 - [X] Jobs
     • [X] Redirects
     • [X] Delete button
+- [X] Job params for clocking in
+- [X] Weird indent when logged in as regular user
+- [X ] Time Entries date incorrect
+- [X] Delete/Edit buttons on achives page?
+- [X] Tasks ordered by A-Z
+- [ ] Dont show pending on index
+- [ ] Reject edit funtion
 - [ ] Active/inactive tables?
 - [WRN] Job params for clocking in
 - [ ] Dont show pending on index
