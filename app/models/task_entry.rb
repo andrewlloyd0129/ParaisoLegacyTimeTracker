@@ -1,7 +1,7 @@
 class TaskEntry < ApplicationRecord
   belongs_to :time_entry
   belongs_to :task
-  belongs_to :job, optional: true
+  belongs_to :job
 
   def self.this_weeks_entries ents
     x = TimeEntry.find_start_of_week
