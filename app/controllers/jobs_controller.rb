@@ -37,7 +37,6 @@ class JobsController < ApplicationController
   def show
         respond_to do |format|
         format.html
- 
         format.csv { send_data @job.to_csv }
       end
   end
