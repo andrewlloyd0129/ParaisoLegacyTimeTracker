@@ -38,3 +38,7 @@ gem 'administrate', '~> 0.10.0'
 gem 'bourbon'
 gem 'ransack', '~> 1.7'
 gem 'faker', '~> 1.6', '>= 1.6.6'
+
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx_rails'
