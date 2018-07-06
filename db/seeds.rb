@@ -33,13 +33,13 @@ puts "10 tasks created"
   )
      14.times do |j|
       TimeEntry.create!(  start_time: (Date.today - j).to_datetime,
-                end_time: Time.now,
+                end_time: (Date.today - j).to_datetime + 8.hours,
                 user_id: i + 2,
                 status: 'approved'
         )
         2.times do |k|
-          TaskEntry.create!(  start_time: Time.now - (2*360),
-                    end_time: Time.now,
+          TaskEntry.create!(  start_time: (Date.today - j).to_datetime,
+                    end_time: (Date.today - j).to_datetime + 8.hours,
                     task_id: rand(1..10),
                     time_entry: TimeEntry.last,
                     job_id: rand(1..10),
