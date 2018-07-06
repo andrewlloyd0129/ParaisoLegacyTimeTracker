@@ -23,14 +23,14 @@ class TaskEntry < ApplicationRecord
   end
 
   def calculate_fields
-    wage
-    hours_generator
+    calculate_wage
     overtime_generator
     gross_pay_generator
-    self.save
+    payroll_burden_generator
+    total_cost
   end
 
-  def wage
+  def calculate_wage
     self.wage = self.time_entry.user.wage
     self.save
   end
@@ -47,31 +47,33 @@ class TaskEntry < ApplicationRecord
     y = []
     x = TaskEntry.this_weeks_entries TaskEntry.where(job_id: z)
     x.each do |it|
-      y << it.hours
+      y << it.hours.to_i
     end 
 
     z = y.inject(:+)
 
-    if z < 40
+    if z < 4000
       self.overtime = 0
-    elsif z > 40
-      self.hours = 40
-      self.overtime = z - 40
+    elsif z > 4000
+      self.hours = 4000
+      self.overtime = z - 4000
     end
     self.save
   end
 
   def gross_pay_generator
-    x = self.hours * self.wage
-    y self.overtime * self.wage * 1.5 
+    x = self.hours.to_i * self.wage.to_i
+    y = self.overtime.to_i * self.wage.to_i * 1.5 
     self.gross_pay = x + y
   end
 
   def payroll_burden_generator
-    self.payroll_burden = self.gross_pay * self.job.JobsCsv.last.payroll_burden
+    self.payroll_burden = self.gross_pay.to_i * self.job.jobs_csvs.last.payrollburden
+    self.save
   end
 
   def total_cost
-    self.total_cost = self.payroll_burden + self.gross_pay
+    self.total_cost = self.payroll_burden.to_i + self.gross_pay.to_i
+    self.save
   end
 end
