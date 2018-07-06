@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180706213118) do
+ActiveRecord::Schema.define(version: 20180706221157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20180706213118) do
   end
 
   create_table "pay_reports", force: :cascade do |t|
-    t.datetime "start_period"
-    t.datetime "end_period"
+    t.datetime "start"
+    t.datetime "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20180706213118) do
   create_table "task_entries", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
-    t.bigint "time_entries_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "task_id"
@@ -54,9 +53,10 @@ ActiveRecord::Schema.define(version: 20180706213118) do
     t.string "gross_pay"
     t.string "payroll_burden"
     t.string "total_cost"
+    t.bigint "pay_report_id"
     t.index ["job_id"], name: "index_task_entries_on_job_id"
+    t.index ["pay_report_id"], name: "index_task_entries_on_pay_report_id"
     t.index ["task_id"], name: "index_task_entries_on_task_id"
-    t.index ["time_entries_id"], name: "index_task_entries_on_time_entries_id"
     t.index ["time_entry_id"], name: "index_task_entries_on_time_entry_id"
   end
 
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20180706213118) do
 
   add_foreign_key "jobs_csvs", "jobs"
   add_foreign_key "task_entries", "jobs"
+  add_foreign_key "task_entries", "pay_reports"
   add_foreign_key "task_entries", "tasks"
   add_foreign_key "task_entries", "time_entries"
-  add_foreign_key "task_entries", "time_entries", column: "time_entries_id"
   add_foreign_key "time_entries", "users"
 end
