@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :pay_reports
   namespace :admin do
     resources :users
     resources :jobs
