@@ -9,6 +9,9 @@ class JobsCsvsController < ApplicationController
       @task_entries = TaskEntry.where(job_id: @report.job_id)
       respond_to do |format|
         format.html
+        format.xlsx {
+          response.headers['Content-Disposition'] = 'attachment; filename="job costing.xlsx"'
+        }
         format.csv do |version|
           send_data @report.job.to_csv 
       end

@@ -27,7 +27,7 @@ class TaskEntry < ApplicationRecord
     overtime_generator
     gross_pay_generator
     payroll_burden_generator
-    total_cost
+    total_cost_generator
   end
 
   def calculate_wage
@@ -72,7 +72,7 @@ class TaskEntry < ApplicationRecord
     self.save
   end
 
-  def total_cost
+  def total_cost_generator
     self.total_cost = self.payroll_burden.to_i + self.gross_pay.to_i
     self.save
   end
