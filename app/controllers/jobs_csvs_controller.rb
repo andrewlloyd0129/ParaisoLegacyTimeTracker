@@ -10,7 +10,7 @@ class JobsCsvsController < ApplicationController
       respond_to do |format|
         format.html
         format.xlsx {
-          response.headers['Content-Disposition'] = 'attachment; filename="job costing.xlsx"'
+          response.headers['Content-Disposition'] = "attachment; filename='#{@report.job.job_number} #{@report.job.job_name} Job Costing.xlsx' "
         }
         format.csv do |version|
           send_data @report.job.to_csv 

@@ -44,9 +44,9 @@ class TaskEntry < ApplicationRecord
   end
 
   def overtime_generator
-    z = self.job_id
+    t = self.job_id
     y = []
-    x = TaskEntry.this_weeks_entries TaskEntry.where(job_id: z)
+    x = TaskEntry.this_weeks_entries TaskEntry.where(job_id: t)
     x.each do |it|
       y << it.hours.to_i
     end 
@@ -66,6 +66,7 @@ class TaskEntry < ApplicationRecord
     x = self.hours.to_i * self.wage.to_i
     y = self.overtime.to_i * self.wage.to_i * 1.5 
     self.gross_pay = x + y
+    self.save
   end
 
   def payroll_burden_generator

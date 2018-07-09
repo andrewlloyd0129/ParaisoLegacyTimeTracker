@@ -3,13 +3,21 @@
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Payroll") do |sheet|
- # this is the head row of your spreadsheet
+
  sheet.add_row
  sheet.add_row
- sheet.add_row ["", "", "Employee", "Task", "Hours", "O/THours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
+ sheet.add_row ["", "", "", "", "", "Payroll Job Costing Report:", "#{@report.job.job_number} #{@report.job.job_name}"]
+ sheet.add_row ["", "", "", "", "Job:", "#{@report.job.job_number} #{@report.job.job_name}"]
+ sheet.add_row
+ sheet.add_row ["", "", "", "", "Employee", "Task", "Hours", "O/THours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
   @report.job.task_entries.each do |entry|
-   sheet.add_row ["", "", entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
+   sheet.add_row ["", "", "", "", entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
   end
+
+  sheet.add_row
+  sheet.add_row
+  sheet.add_row
+  sheet.add_row ["Total Sales:"]
  
  # each user is a row on your spreadsheet
  #@user.tasks.each do |user|
