@@ -2,15 +2,18 @@
 
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Users") do |sheet|
+wb.add_worksheet(name: "Payroll") do |sheet|
  # this is the head row of your spreadsheet
- sheet.add_row %w(Employee Task Hours "O/T Hours" Wage "Gross Pay" "Payroll Burden" "Total Cost")
-  @report.job.taskentries.each do |entry|
-   sheet.add_row [entry.time_entry.user.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
+ sheet.add_row
+ sheet.add_row
+ sheet.add_row ["", "", "Employee", "Task", "Hours", "O/THours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
+  @report.job.task_entries.each do |entry|
+   sheet.add_row ["", "", entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
   end
  
  # each user is a row on your spreadsheet
- @user.tasks.each do |user|
-   sheet.add_row ["",user.name, user.job, user.hours, (@user.wage * user.hours * 0.01),"poop"]
- end
+ #@user.tasks.each do |user|
+  # sheet.add_row ["",user.name, user.job, user.hours, (@user.wage * user.hours * 0.01),"poop"]
+ #end
+
 end

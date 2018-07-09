@@ -10,7 +10,7 @@
     <td><%= report.job.job_number%></td>
     <td><%= report.job.job_name%></td>
     <td><%= report.created_at%></td>
-    <td><%= link_to "Download", jobs_csv_path(report, :format => :csv)%></td>
+    <td><%= link_to "Download", jobs_csv_path(report, :format => :xlsx)%></td>
   </tr>
 <% end %>
 </table>
