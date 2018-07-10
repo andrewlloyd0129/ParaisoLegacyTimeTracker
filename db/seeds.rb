@@ -1,5 +1,5 @@
 
-10.times do |job|
+3.times do |job|
   Job.create!(job_number: (14000 + job), job_name: Faker::Address.street_name)
 end
 
@@ -33,16 +33,16 @@ puts "10 tasks created"
   )
      14.times do |j|
       TimeEntry.create!(  start_time: (Date.today - j).to_datetime,
-                end_time: (Date.today - j).to_datetime + 8.hours,
+                end_time: (Date.today - j).to_datetime + 10.hours,
                 user_id: i + 2,
                 status: 'approved'
         )
         2.times do |k|
           TaskEntry.create!(  start_time: (Date.today - j).to_datetime,
-                    end_time: (Date.today - j).to_datetime + 8.hours,
+                    end_time: (Date.today - j).to_datetime + 10.hours,
                     task_id: rand(1..10),
                     time_entry: TimeEntry.last,
-                    job_id: rand(1..10),
+                    job_id: rand(1..3),
           )
       end
     end
