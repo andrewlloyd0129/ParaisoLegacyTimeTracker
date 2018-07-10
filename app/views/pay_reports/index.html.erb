@@ -1,0 +1,19 @@
+<table class="table table-bordered">
+  <tr>
+    <th>Job Name</th>
+    <th>Job Number</th>
+    <th>Date Created</th>
+    <th>Download Report</th>
+  </tr>
+<% @pay_reports.each do |report| %>
+  <tr>
+    <td><%= report.start%></td>
+    <td><%= report.end%></td>
+    <td><%= report.task_entries.count%></td>
+    <td><%= link_to "Download", pay_report_path(report, :format => :xlsx)%></td>
+<!--     <% report.task_entries.each do |poop| %>
+    	<%= poop.inspect %>
+    <% end %> -->
+  </tr>
+<% end %>
+</table>
