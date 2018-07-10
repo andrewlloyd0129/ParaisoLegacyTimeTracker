@@ -1,4 +1,8 @@
-# app/views/users/index.xlsx.axlsx
+@report.job.task_entries.each do |entry|
+  entry.payroll_burden_generator
+  entry.total_cost_generator
+  entry.overtime_generator
+end
 
 wb = xlsx_package.workbook
 
@@ -9,19 +13,15 @@ wb.add_worksheet(name: "Payroll") do |sheet|
  sheet.add_row ["", "", "", "", "", "Payroll Job Costing Report:", "#{@report.job.job_number} #{@report.job.job_name}"]
  sheet.add_row ["", "", "", "", "Job:", "#{@report.job.job_number} #{@report.job.job_name}"]
  sheet.add_row
- sheet.add_row ["", "", "", "", "Employee", "Task", "Hours", "O/THours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
+ sheet.add_row ["", "", "", "Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
   @report.job.task_entries.each do |entry|
-   sheet.add_row ["", "", "", "", entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
+   sheet.add_row ["", "", "", entry.time_entry.start_time, entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
   end
 
   sheet.add_row
   sheet.add_row
   sheet.add_row
   sheet.add_row ["Total Sales:"]
- 
- # each user is a row on your spreadsheet
- #@user.tasks.each do |user|
-  # sheet.add_row ["",user.name, user.job, user.hours, (@user.wage * user.hours * 0.01),"poop"]
- #end
+
 
 end

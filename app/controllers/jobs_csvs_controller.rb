@@ -32,7 +32,6 @@ class JobsCsvsController < ApplicationController
     def create
       @report = JobsCsv.new(report_params)
       if @report.save
-         @report.populate_fields
         redirect_to jobs_csvs_path
       else
         render :new

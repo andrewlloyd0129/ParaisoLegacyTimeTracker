@@ -27,8 +27,6 @@ class TaskEntry < ApplicationRecord
     calculate_wage
     overtime_generator
     gross_pay_generator
-    payroll_burden_generator
-    total_cost_generator
   end
 
   def calculate_wage
@@ -38,7 +36,7 @@ class TaskEntry < ApplicationRecord
 
   def hours_generator
     elapsedSeconds = self.end_time - self.start_time
-    temp = elapsedSeconds / 36
+    temp = elapsedSeconds / 3600
     self.hours = temp 
     self.save
   end
@@ -46,20 +44,22 @@ class TaskEntry < ApplicationRecord
   def overtime_generator
     t = self.job_id
     y = []
+    z = 0
     x = TaskEntry.this_weeks_entries TaskEntry.where(job_id: t)
     x.each do |it|
-      y << it.hours.to_i
+      z += it.hours.to_i
+      if z < 40
+        self.overtime = 0
+      elsif z > 40
+        self.overtime = z - 40
+        self.hours = self.hours - self.overtime
+      end
+        self.save
     end 
 
-    z = y.inject(:+)
+  
+    # byebug
 
-    if z < 4000
-      self.overtime = 0
-    elsif z > 4000
-      self.hours = 4000
-      self.overtime = z - 4000
-    end
-    self.save
   end
 
   def gross_pay_generator
