@@ -3,6 +3,7 @@ class TaskEntry < ApplicationRecord
   belongs_to :task
   belongs_to :job
   belongs_to :pay_reports, optional: true
+  has_one :user, :through => :task
 
   def self.this_weeks_entries ents
     x = TaskEntry.find_start_of_week
@@ -41,25 +42,22 @@ class TaskEntry < ApplicationRecord
     self.save
   end
 
-  def overtime_generator
-    t = self.job_id
-    y = []
-    z = 0
-    x = TaskEntry.this_weeks_entries TaskEntry.where(job_id: t)
-    x.each do |it|
-      z += it.hours.to_i
-      if z < 40
-        self.overtime = 0
-      elsif z > 40
-        self.overtime = z - 40
-        self.hours = self.hours - self.overtime
-      end
-        self.save
-    end 
 
-  
-    # byebug
+  def overtime_generator t_hours
+    self.overtime = (t_hours + self.hours.to_f) - 40
+    self.hours = self.hours.to_f - self.overtime.to_f
 
+  end 
+
+  def is_overtime
+    self.overtime = self.hours
+    self.hours = 0
+    self.save
+  end
+
+  def no_overtime
+    self.overtime = 0
+    self.save
   end
 
   def gross_pay_generator

@@ -54,6 +54,20 @@ class TimeEntriesController < ApplicationController
     if @entry.update(time_entry_params)
       @entry.save
       @entry.approved!
+
+      @entry.task_entries.last.hours_generator
+      tasks = get_task_between(TimeEntry.find_start_of_week, @entry.task_entries.last.start_time - 1)
+      t_hours = tasks.map(&:hours).map(&:to_f).sum
+      t_ot = tasks.map(&:overtime).map(&:to_f).sum
+      
+      if t_ot > 0
+        @entry.task_entries.last(2)[0].is_overtime
+      elsif t_hours + @entry.task_entries.last(2)[0].hours.to_f <= 40
+        @entry.task_entries.last(2)[0].no_overtime
+      else
+        @entry.task_entries.last(2)[0].overtime_generator t_hours
+      end
+
       redirect_to time_entries_path, notice: 'Clocked Out'
     else
       render :edit, notice: 'Error submitting your request'
@@ -65,7 +79,22 @@ class TimeEntriesController < ApplicationController
 
   def switch_task_update
     if @entry.update(time_entry_params)
+      
       @entry.save
+      @entry.task_entries.last(2)[0].hours_generator
+      tasks = get_task_between(TimeEntry.find_start_of_week, @entry.task_entries.last.start_time - 1)
+      t_hours = tasks.map(&:hours).map(&:to_f).sum
+      t_ot = tasks.map(&:overtime).map(&:to_f).sum
+      
+      if t_ot > 0
+        @entry.task_entries.last(2)[0].is_overtime
+      elsif t_hours + @entry.task_entries.last(2)[0].hours.to_f <= 40
+        @entry.task_entries.last(2)[0].no_overtime
+      else
+        @entry.task_entries.last(2)[0].overtime_generator t_hours
+      end
+
+
       redirect_to time_entries_path, notice: 'Task Switched'
     else
       redirect_to :switch_task
@@ -101,5 +130,12 @@ class TimeEntriesController < ApplicationController
         :task_id,
         :job_id,
         :_destroy])
+  end
+
+
+  def get_task_between(strt, en)
+    tasks = TaskEntry.all
+    tasks = tasks.select { |e| e.time_entry.user_id == @entry.user_id}
+    tasks = tasks.select { |e| e.start_time.between?(strt, en) == true }
   end
 end
