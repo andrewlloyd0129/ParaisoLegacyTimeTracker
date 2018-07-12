@@ -17,7 +17,7 @@ class TaskEntriesController < ApplicationController
 
 
       	# TODO REDIRECT TO NOT A SHOW PAGE FOR TASK ENTRY
-
+        @task_entry.get_task_between(3, 4)
 
       	redirect_to task_entry_path(@task_entry)
       else
@@ -32,6 +32,7 @@ class TaskEntriesController < ApplicationController
     @task = Task.all
   	if @task_entry.update(task_entry_params)
   		@task_entry.save
+      @task_entry.get_task_between(3, 4)
 
 
       	# TODO REDIRECT TO NOT A SHOW PAGE FOR TASK ENTRY
