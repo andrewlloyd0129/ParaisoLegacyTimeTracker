@@ -22,7 +22,7 @@ end
 
 puts "10 tasks created"
 
-2.times do |i|
+1.times do |i|
   User.create!(
      email: "test#{i}@test.com",
      password: "asdfasdf",
@@ -32,14 +32,19 @@ puts "10 tasks created"
   )
      12.times do |j|
       TimeEntry.create!(  
-                start_time: (Date.today - 11 + j).to_datetime,
-                end_time: (Date.today - j).to_datetime + 10.hours,
+                start_time: Time.new(1,1,1,0,0,0),
+                end_time: Time.new(1,1,1,10,0,0),
+                start_date: (Date.today - 11 +j ),
+                end_date: (Date.today - 11 +j ),
                 user_id: i + 2,
                 status: 'approved'
         )
         1.times do |k|
-          TaskEntry.create!(  start_time: (Date.today - 11 + j).to_datetime,
-                    end_time: (Date.today - 11 + j).to_datetime + 10.hours,
+          TaskEntry.create!(  
+                    start_time:Time.new(1,1,1,0,0,0),
+                    end_time: Time.new(1,1,1,10,0,0),
+                    start_date: (Date.today - 11 +j ),
+                    end_date: (Date.today - 11 +j ),
                     task_id: rand(1..10),
                     time_entry: TimeEntry.last,
                     job_id: rand(1..3),

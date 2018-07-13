@@ -24,7 +24,7 @@ class TaskEntry < ApplicationRecord
   end
 
   def find_start_of_week
-    d = self.start_time
+    d = self.start_date
     while true
       if d.wday == 1
         break
