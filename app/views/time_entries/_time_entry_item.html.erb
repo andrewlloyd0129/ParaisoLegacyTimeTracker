@@ -4,13 +4,15 @@
   </h5>
 <% end %>
 <h4 class="inline">
-  <%= weekday(time_entry_item.start_time.wday) %>
+  <%= weekday(time_entry_item.start_date.wday) %>
 </h4>
 <%= time_entry_item.status %>
 <br>
-<%= time_entry_item.start_time.strftime("%D %l:%M %p") %>
+<%= time_entry_item.start_date.strftime("%D") %>
+<%= time_entry_item.start_time.strftime("%l:%M %p") %>
 <br>
-<%= time_entry_item.end_time.strftime("%D %l:%M %p") if time_entry_item.end_time != nil %>
+<%= time_entry_item.end_date.strftime("%D") if time_entry_item.end_date != nil %>
+<%= time_entry_item.end_time.strftime("%l:%M %p") if time_entry_item.end_time != nil %>
 <br>
 <div style="margin-bottom: .5em;">
   <%= link_to "EDIT", edit_time_entry_path(time_entry_item), class: 'btn btn-warning' %>

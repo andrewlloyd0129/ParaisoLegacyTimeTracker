@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(version: 20180706221157) do
   end
 
   create_table "task_entries", force: :cascade do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.date "start_date"
+    t.time "start_time"
+    t.date "end_date"
+    t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "task_id"
@@ -68,8 +70,10 @@ ActiveRecord::Schema.define(version: 20180706221157) do
   end
 
   create_table "time_entries", force: :cascade do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.date "start_date"
+    t.time "start_time"
+    t.date "end_date"
+    t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0

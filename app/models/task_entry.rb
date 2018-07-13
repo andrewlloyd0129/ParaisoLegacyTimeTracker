@@ -19,7 +19,7 @@ class TaskEntry < ApplicationRecord
       d -= 1
       puts d.wday
     end
-    d.to_datetime
+    d
     return d
   end
 

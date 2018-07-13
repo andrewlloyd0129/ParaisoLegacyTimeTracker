@@ -1,8 +1,14 @@
 <tr>  
-  <td style="width: 6%"><h5 class="inline"><%= weekday(time_entry_item.start_time.wday) %></h5></td>
+  <td style="width: 6%"><h5 class="inline"><%= weekday(time_entry_item.start_date.wday) %></h5></td>
   <td style="width: 8%"><h5 class="inline"><%= time_entry_item.user.full_name %></h5></td>
-  <td style="width: 2.66%"><%= time_entry_item.start_time.strftime("%D %l:%M %p") %></td>
-  <td style="width: 2.66%"><%= time_entry_item.end_time.strftime("%D %l:%M %p") if time_entry_item.end_time != nil %></td>
+  <td style="width: 2.66%">
+    <%= time_entry_item.start_date.strftime("%D") %>
+    <%= time_entry_item.start_time.strftime("%l:%M %p") %>
+  </td>
+  <td style="width: 2.66%">
+    <%= time_entry_item.end_date.strftime("%D") if time_entry_item.end_date != nil %>
+    <%= time_entry_item.end_time.strftime("%l:%M %p") if time_entry_item.end_time != nil %>
+  </td>
   <td style="width: 6%"><%= time_entry_item.status %></td>
   <!-- <td style="width: 5%"><%= link_to "EDIT", edit_time_entry_path(time_entry_item), class: 'btn btn-warning form-control' %></td>
   <td style="width: 5%"><%= link_to "DELETE", time_entry_item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger form-control' %></td> -->
