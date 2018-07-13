@@ -9,6 +9,8 @@
       <% end %>
     </div>
 
+    <%= f.hidden_field :start_date, value: Date.today, readonly: true, class: 'form-control' %>
+
     <%= f.text_field :start_time, value: Time.now.strftime("%l:%M %p"), readonly: true, class: 'form-control' %>
     <div class="form-group">
       <%= f.fields_for :task_entries do |task|  %>

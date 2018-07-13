@@ -1,11 +1,13 @@
 <% @rejected.each do |entry| %>
   <h4 class="inline">
-    <%= weekday(entry.start_time.wday) %>
+    <%= weekday(entry.start_date.wday) %>
   </h4>
   <%= entry.status %>
   <br>
-  <%= entry.start_time.strftime("%D %l:%M %p") %><br>
-  <%= entry.end_time.strftime("%D %l:%M %p") if entry.end_time != nil %>
+  <%= entry.start_date.strftime("%D") %>
+  <%= entry.start_time.strftime("%l:%M %p") %><br>
+  <%= entry.end_date.strftime("%D") if entry.end_date != nil %>
+  <%= entry.end_time.strftime("%l:%M %p") if entry.end_time != nil %>
   <div style="margin-bottom: .5em;">
   <%= link_to "EDIT", edit_time_entry_path(entry), class: 'btn btn-warning' %>
   <%= link_to "DELETE", entry, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
@@ -29,4 +31,5 @@
     </tr>
   </table>
   </div>
+  <br>
 <% end %>

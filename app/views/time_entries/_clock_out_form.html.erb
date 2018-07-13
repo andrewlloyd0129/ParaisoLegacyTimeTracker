@@ -5,7 +5,8 @@ Clocked In at:
 <%= f.text_field :start_time, value: f.object.start_time.strftime("%l:%M %p"), readonly: true, class: 'form-control' %>
 <br>
 Clocked Out at:
-<%= f.hidden_field :end_time, value: Time.now.strftime("%l:%M %p"), readonly: true%>
+<%= f.hidden_field :end_date, value: Date.today, readonly: true %>
+<%= f.hidden_field :end_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
 
 
 

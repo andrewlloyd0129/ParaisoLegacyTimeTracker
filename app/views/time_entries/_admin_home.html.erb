@@ -4,8 +4,10 @@
   <%= link_to "Approve", admin_approve_time_entry_path(entry), class: 'btn btn-success' %>
   <%= link_to "Reject", admin_reject_time_entry_path(entry), class: 'btn btn-danger' %>
   <h5><%= entry.user.full_name %></h5>
-  <%= entry.start_time.strftime("%D %l:%M %p") %><br>
-  <%= entry.end_time.strftime("%D %l:%M %p") if entry.end_time != nil %>
+  <%= entry.start_date.strftime("%D") %>
+  <%= entry.start_time.strftime("%l:%M %p") %><br>
+  <%= entry.end_date.strftime("%D") if entry.end_date != nil %>
+  <%= entry.end_time.strftime("%l:%M %p") if entry.end_time != nil %>
   <br>
     <button class='btn btn-primary' onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
   <div id="myDIV<%= entry.id %>">

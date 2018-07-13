@@ -126,13 +126,17 @@ class TimeEntriesController < ApplicationController
 
   def time_entry_params
     params.require(:time_entry).permit( 
+      :start_date, 
       :start_time, 
+      :end_date, 
       :end_time, 
       :user_id, 
       :task_entry,
       task_entries_attributes:
       [ :id,
+        :start_date,
         :start_time,
+        :end_date,
         :end_time,
         :task_id,
         :job_id,

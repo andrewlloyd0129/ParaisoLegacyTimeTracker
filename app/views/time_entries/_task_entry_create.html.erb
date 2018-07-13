@@ -1,5 +1,7 @@
 <div class="form-group nested-fields">
 
+<%= f.hidden_field :start_date, value: Date.today, readonly: true %>
+
 <%= f.hidden_field :start_time, value: Time.now.strftime("%l:%M %p"), readonly: true %>
     <div>
     <%= f.collection_select(:task_id, Task.where(status: "active"), :id, :title, {:include_blank => "Task Select"}, {class: 'form-control'}) %>

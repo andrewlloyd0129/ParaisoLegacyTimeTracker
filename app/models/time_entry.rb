@@ -6,12 +6,12 @@ class TimeEntry < ApplicationRecord
   accepts_nested_attributes_for :task_entries, allow_destroy: true
 
   def self.todays_entries ents
-  	ents.select { |e| e.start_time.today? == true}
+  	ents.select { |e| e.start_date.today? == true}
   end
 
   def self.this_weeks_entries ents
   	x = TimeEntry.find_start_of_week
-  	ents.select { |e| e.start_time.between?(x, Date.today) == true }
+  	ents.select { |e| e.start_date.between?(x, Date.today) == true }
   end
 
   def self.find_start_of_week
@@ -22,6 +22,6 @@ class TimeEntry < ApplicationRecord
   		end
   		d -= 1
   	end
-  	d.to_datetime
+  	d
   end
 end

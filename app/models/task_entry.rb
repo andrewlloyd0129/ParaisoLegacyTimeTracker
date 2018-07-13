@@ -31,7 +31,7 @@ class TaskEntry < ApplicationRecord
       end
       d -= 1
     end
-    d.to_datetime
+    d
     return d
   end
 
