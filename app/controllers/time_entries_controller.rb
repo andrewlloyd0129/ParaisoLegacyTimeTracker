@@ -86,14 +86,21 @@ class TimeEntriesController < ApplicationController
       t_hours = tasks.map(&:hours).map(&:to_f).sum
       t_ot = tasks.map(&:overtime).map(&:to_f).sum
       
+      byebug
       if t_ot > 0
+        byebug
         @entry.task_entries.last(2)[0].is_overtime
       elsif t_hours + @entry.task_entries.last(2)[0].hours.to_f <= 40
+        byebug
+        
         @entry.task_entries.last(2)[0].no_overtime
       else
+        byebug
+        
         @entry.task_entries.last(2)[0].overtime_generator t_hours
       end
 
+      byebug
 
       redirect_to time_entries_path, notice: 'Task Switched'
     else

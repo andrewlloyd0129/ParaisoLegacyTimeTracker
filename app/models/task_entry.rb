@@ -3,7 +3,7 @@ class TaskEntry < ApplicationRecord
   belongs_to :task
   belongs_to :job
   belongs_to :pay_reports, optional: true
-  has_one :user, :through => :task
+  has_one :user, :through => :time_entry
 
   def self.this_weeks_entries ents
     x = TaskEntry.find_start_of_week
@@ -18,7 +18,18 @@ class TaskEntry < ApplicationRecord
         break
       end
       d -= 1
-      puts d.wday
+    end
+    d.to_datetime
+    return d
+  end
+
+  def find_start_of_week
+    d = self.start_time
+    while true
+      if d.wday == 1
+        break
+      end
+      d -= 1
     end
     d.to_datetime
     return d
@@ -46,7 +57,7 @@ class TaskEntry < ApplicationRecord
   def overtime_generator t_hours
     self.overtime = (t_hours + self.hours.to_f) - 40
     self.hours = self.hours.to_f - self.overtime.to_f
-
+    self.save
   end 
 
   def is_overtime

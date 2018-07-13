@@ -21,7 +21,6 @@ class TimeEntry < ApplicationRecord
   			break
   		end
   		d -= 1
-  		puts d.wday
   	end
   	d.to_datetime
   end
