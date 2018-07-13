@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180706221157) do
+ActiveRecord::Schema.define(version: 20180712202852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(version: 20180706221157) do
     t.bigint "task_id"
     t.bigint "time_entry_id"
     t.bigint "job_id"
-    t.string "hours"
-    t.integer "overtime"
-    t.string "wage"
-    t.string "gross_pay"
-    t.string "payroll_burden"
-    t.string "total_cost"
     t.bigint "pay_report_id"
+    t.integer "hours"
+    t.integer "overtime"
+    t.integer "wage"
+    t.integer "gross_pay"
+    t.integer "payroll_burden"
+    t.integer "total_cost"
     t.index ["job_id"], name: "index_task_entries_on_job_id"
     t.index ["pay_report_id"], name: "index_task_entries_on_pay_report_id"
     t.index ["task_id"], name: "index_task_entries_on_task_id"
