@@ -1,9 +1,3 @@
-@report.job.task_entries.each do |entry|
-  entry.payroll_burden_generator
-  entry.total_cost_generator
-  entry.overtime_generator
-end
-
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Payroll") do |sheet|
@@ -22,6 +16,4 @@ wb.add_worksheet(name: "Payroll") do |sheet|
   sheet.add_row
   sheet.add_row
   sheet.add_row ["Total Sales:"]
-
-
 end

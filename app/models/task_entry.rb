@@ -3,7 +3,7 @@ class TaskEntry < ApplicationRecord
   belongs_to :task
   belongs_to :job
   belongs_to :pay_reports, optional: true
-  has_one :user, :through => :task
+  has_one :user, :through => :time_entry
 
   def self.this_weeks_entries ents
     x = TaskEntry.find_start_of_week
