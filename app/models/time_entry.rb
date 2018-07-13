@@ -3,7 +3,7 @@ class TimeEntry < ApplicationRecord
   belongs_to :user
   has_many :task_entries, :dependent => :destroy
 
-  accepts_nested_attributes_for :task_entries
+  accepts_nested_attributes_for :task_entries, allow_destroy: true
 
   def self.todays_entries ents
   	ents.select { |e| e.start_time.today? == true}
