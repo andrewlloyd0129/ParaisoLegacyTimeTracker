@@ -61,11 +61,11 @@ class TimeEntriesController < ApplicationController
       t_ot = tasks.map(&:overtime).map(&:to_f).sum
       
       if t_ot > 0
-        @entry.task_entries.last(2)[0].is_overtime
-      elsif t_hours + @entry.task_entries.last(2)[0].hours.to_f <= 40
-        @entry.task_entries.last(2)[0].no_overtime
+        @entry.task_entries.last.is_overtime
+      elsif t_hours + @entry.task_entries.last.hours <= 4000
+        @entry.task_entries.last.no_overtime
       else
-        @entry.task_entries.last(2)[0].overtime_generator t_hours
+        @entry.task_entries.last.overtime_generator t_hours
       end
 
       redirect_to time_entries_path, notice: 'Clocked Out'
@@ -82,15 +82,15 @@ class TimeEntriesController < ApplicationController
       
       @entry.save
       @entry.task_entries.last(2)[0].hours_generator
-      tasks = get_task_between(TimeEntry.find_start_of_week, @entry.task_entries.last.start_time - 1)
-      t_hours = tasks.map(&:hours).map(&:to_f).sum
-      t_ot = tasks.map(&:overtime).map(&:to_f).sum
+      tasks = get_task_between(TimeEntry.find_start_of_week, @entry.task_entries.last(2)[0].start_time - 1)
+      t_hours = tasks.map(&:hours).sum
+      t_ot = tasks.map(&:overtime).sum
       
       byebug
       if t_ot > 0
         byebug
         @entry.task_entries.last(2)[0].is_overtime
-      elsif t_hours + @entry.task_entries.last(2)[0].hours.to_f <= 40
+      elsif t_hours + @entry.task_entries.last(2)[0].hours <= 4000
         byebug
         
         @entry.task_entries.last(2)[0].no_overtime

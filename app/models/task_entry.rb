@@ -48,15 +48,15 @@ class TaskEntry < ApplicationRecord
 
   def hours_generator
     elapsedSeconds = self.end_time - self.start_time
-    temp = elapsedSeconds / 3600
+    temp = elapsedSeconds / 36
     self.hours = temp 
     self.save
   end
 
 
   def overtime_generator t_hours
-    self.overtime = (t_hours + self.hours.to_f) - 40
-    self.hours = self.hours.to_f - self.overtime.to_f
+    self.overtime = (t_hours + self.hours) - 4000
+    self.hours = self.hours - self.overtime
     self.save
   end 
 
