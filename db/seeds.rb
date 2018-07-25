@@ -17,7 +17,7 @@ puts "1 admin user created"
 
 
 10.times do |task|
-  Task.create!(title: Faker::Job.field)
+  Task.create!(title: "#{Faker::Job.field} - #{task}")
 end
 
 puts "10 tasks created"
@@ -28,7 +28,7 @@ puts "10 tasks created"
      password: "asdfasdf",
      password_confirmation: "asdfasdf",
      full_name: Faker::FunnyName.two_word_name,
-     wage: 15 + i
+     wage: 1500
   )
      12.times do |j|
       TimeEntry.create!(  
@@ -54,6 +54,8 @@ puts "10 tasks created"
           
           if t.start_date.wday > 4 || t.start_date.wday == 0
             t.is_overtime
+          else
+            t.no_overtime
           end
 
       end

@@ -49,8 +49,9 @@ class TaskEntry < ApplicationRecord
 
   def calculate_fields
     calculate_wage
-    overtime_generator
     gross_pay_generator
+    payroll_burden_generator
+    total_cost_generator
   end
 
   def calculate_wage
