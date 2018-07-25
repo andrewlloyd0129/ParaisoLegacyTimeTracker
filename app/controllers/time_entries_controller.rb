@@ -31,6 +31,32 @@ class TimeEntriesController < ApplicationController
   def update
     if @entry.update(time_entry_params)
       @entry.save
+
+      #get all the task for this employee this week
+      ws = @entry.task_entries.last.find_start_of_week
+      we = @entry.task_entries.last.find_end_of_week
+
+      tasks = get_task_between(ws, we)
+
+      t_hours = 0
+      t_ot = 0
+
+      tasks.each do |task|
+        task.hours_generator
+        if t_ot > 0
+          task.is_overtime
+          t_ot += task.overtime
+        elsif t_hours + task.hours > 4000
+          task.overtime_generator t_hours
+          t_hours += task.hours
+          t_ot += task.overtime
+        else
+          task.no_overtime
+          t_hours += task.hours
+        end
+
+      end
+
       @entry.pending!
       redirect_to time_entries_path, notice: 'Your time entry edit was submitted for approval'
     else
@@ -137,7 +163,8 @@ class TimeEntriesController < ApplicationController
 
 
   def get_task_between(strt, en)
-    tasks = TaskEntry.all
+    tasks = TaskEntry.order("start_date ASC, start_time ASC")
+    byebug
     tasks = tasks.select { |e| e.time_entry.user_id == @entry.user_id}
     tasks = tasks.select { |e| e.start_date.between?(strt, en) == true }
   end

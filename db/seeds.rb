@@ -51,18 +51,9 @@ puts "10 tasks created"
           )
           t = TaskEntry.last
           t.hours_generator
-            tasks = TaskEntry.all
-            tasks = tasks.select { |e| e.user == t.user}
-            tasks = tasks.select { |e| e.start_time.between?(e.find_start_of_week, e.start_time - 1) == true }
-          t_hours = tasks.map(&:hours).sum
-          t_ot = tasks.map(&:overtime).sum
           
-          if t_ot > 0
+          if t.start_date.wday > 4 || t.start_date.wday == 0
             t.is_overtime
-          elsif t.hours <= 4000
-            t.no_overtime
-          else
-            t.overtime_generator t_hours
           end
 
       end

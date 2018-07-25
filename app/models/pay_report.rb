@@ -4,7 +4,7 @@ class PayReport < ApplicationRecord
 
 	def self.this_weeks_entries
 		x = PayReport.find_start_of_week
-		y = TaskEntry.where('start_time BETWEEN ? AND ?', x, Date.tomorrow)
+		y = TaskEntry.where('start_time BETWEEN ? AND ?', x, Date.tomorrow).approved
 		return y
 	end
 

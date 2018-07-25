@@ -35,6 +35,18 @@ class TaskEntry < ApplicationRecord
     return d
   end
 
+  def find_end_of_week
+    d = self.start_date
+    while true
+      if d.wday == 0
+        break
+      end
+      d += 1
+    end
+    d
+    return d + 1
+  end
+
   def calculate_fields
     calculate_wage
     overtime_generator
