@@ -1,35 +1,27 @@
-# app/views/users/index.xlsx.axlsx
-
 wb = xlsx_package.workbook
 
 wb.add_worksheet(name: "Payroll") do |sheet|
 
 	sheet.add_row ["Lloyds \n Cabinetry and Countertops"]
-	sheet.add_row ["","","Payroll Report"]
-	sheet.add_row ["","Period Starting:",@pay_report.start]
-	sheet.add_row ["","Period Ending:",@pay_report.end]
+	sheet.add_row [""	,""					,"Payroll Report"]
+	sheet.add_row [""	,"Period Starting:"	,@pay_report.start]
+	sheet.add_row [""	,"Period Ending:"	,@pay_report.end]
 	sheet.add_row 
-	sheet.add_row ["","Total\nHours", "Rate", "TOTAL GROSS"]
+	sheet.add_row [""	,"Total\nHours"		, "Rate"		, "TOTAL GROSS"]
 
 	@users_entries.each do |tasks|
  	hours = 0
  	ot = 0
-	 	tasks.each do |entry|
-	 		entry.hours_generator
-	 	end
-	 	tasks.each do |entry|
-			entry.calculate_fields
-		end
 	 	tasks.each do |entry|
 	 		# sheet.add_row ["#{entry.task.title}"]
 
 	 		hours += entry.hours.to_i
 	 		ot += entry.overtime.to_i
 	 	end
-	 	sheet.add_row [tasks.first.time_entry.user.full_name,hours,tasks.first.time_entry.user.wage, (hours*tasks.first.time_entry.user.wage) ]
-	 	sheet.add_row ["",ot,tasks.first.time_entry.user.wage * 1.5, ot * tasks.first.time_entry.user.wage * 1.5]
+	 	sheet.add_row [tasks.first.time_entry.user.full_name,hours,tasks.first.time_entry.user.wage / 100, (hours*tasks.first.time_entry.user.wage) / 10000 ]
+	 	sheet.add_row ["",ot,tasks.first.time_entry.user.wage /100 * 1.5, ot * tasks.first.time_entry.user.wage * 1.5 / 10000]
 	 	sheet.add_row 
-	 	sheet.add_row ["","","Total",(ot * tasks.first.time_entry.user.wage * 1.5) + (hours*tasks.first.time_entry.user.wage)]
+	 	sheet.add_row ["","","Total",((ot * tasks.first.time_entry.user.wage * 1.5) + (hours*tasks.first.time_entry.user.wage)) / 10000]
 	 	sheet.add_row 
 	 end
 

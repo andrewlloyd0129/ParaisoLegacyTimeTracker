@@ -11,7 +11,7 @@ class PayReport < ApplicationRecord
 		i = i.select { |z| z.time_entry.status == "approved" }
 		i.each do |w|
 			y << w unless y.include?(w)
-		end
+		end 
 		y
 	end
 

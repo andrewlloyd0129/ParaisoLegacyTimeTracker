@@ -49,8 +49,9 @@ class TaskEntry < ApplicationRecord
 
   def calculate_fields
     calculate_wage
-    overtime_generator
     gross_pay_generator
+    payroll_burden_generator
+    total_cost_generator
   end
 
   def calculate_wage
@@ -91,7 +92,7 @@ class TaskEntry < ApplicationRecord
   end
 
   def payroll_burden_generator
-    self.payroll_burden = self.gross_pay.to_i * self.job.jobs_csvs.last.payrollburden
+    self.payroll_burden = self.gross_pay.to_i * JobsCsv.last.payrollburden
     self.save
   end
 
