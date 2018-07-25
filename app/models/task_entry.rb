@@ -2,7 +2,7 @@ class TaskEntry < ApplicationRecord
   belongs_to :time_entry
   belongs_to :task
   belongs_to :job
-  belongs_to :pay_reports, optional: true
+  belongs_to :pay_report, optional: true
   has_one :user, :through => :time_entry
 
   def self.this_weeks_entries ents
