@@ -164,7 +164,6 @@ class TimeEntriesController < ApplicationController
 
   def get_task_between(strt, en)
     tasks = TaskEntry.order("start_date ASC, start_time ASC")
-    byebug
     tasks = tasks.select { |e| e.time_entry.user_id == @entry.user_id}
     tasks = tasks.select { |e| e.start_date.between?(strt, en) == true }
   end
