@@ -7,6 +7,7 @@ class JobsCsvsController < ApplicationController
     def show
       @report = JobsCsv.find(params[:id])
       @task_entries = TaskEntry.where(job_id: @report.job_id)
+      @tasks = Task.all
       respond_to do |format|
         format.html
         format.xlsx {
