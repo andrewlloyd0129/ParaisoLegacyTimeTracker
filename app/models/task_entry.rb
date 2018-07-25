@@ -2,7 +2,7 @@ class TaskEntry < ApplicationRecord
   belongs_to :time_entry
   belongs_to :task
   belongs_to :job
-  belongs_to :pay_reports, optional: true
+  belongs_to :pay_report, optional: true
   has_one :user, :through => :time_entry
 
   def self.this_weeks_entries ents
@@ -33,6 +33,18 @@ class TaskEntry < ApplicationRecord
     end
     d
     return d
+  end
+
+  def find_end_of_week
+    d = self.start_date
+    while true
+      if d.wday == 0
+        break
+      end
+      d += 1
+    end
+    d
+    return d + 1
   end
 
   def calculate_fields

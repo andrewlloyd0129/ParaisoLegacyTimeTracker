@@ -4,8 +4,15 @@ class PayReport < ApplicationRecord
 
 	def self.this_weeks_entries
 		x = PayReport.find_start_of_week
-		y = TaskEntry.where('start_time BETWEEN ? AND ?', x, Date.tomorrow)
-		return y
+		y = TaskEntry.where('start_date BETWEEN ? AND ?', x, Date.tomorrow)
+		y = y.select { |z| z.time_entry.status == "approved" && z.pay_report == nil}
+
+		i = TaskEntry.where(pay_report: nil)
+		i = i.select { |z| z.time_entry.status == "approved" }
+		i.each do |w|
+			y << w unless y.include?(w)
+		end
+		y
 	end
 
 	def self.find_start_of_week
