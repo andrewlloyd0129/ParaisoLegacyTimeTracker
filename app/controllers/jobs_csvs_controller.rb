@@ -8,6 +8,14 @@ class JobsCsvsController < ApplicationController
       @report = JobsCsv.find(params[:id])
       @task_entries = TaskEntry.where(job_id: @report.job_id)
       @tasks = Task.all
+
+      @task_entries.each do |entry|
+        if entry.total_cost == nil
+          entry.calculate_fields
+        end
+      end
+
+
       respond_to do |format|
         format.html
         format.xlsx {

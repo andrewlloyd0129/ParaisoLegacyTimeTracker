@@ -4,14 +4,16 @@
           <%= alert_generator error %>
         <% end %>
       <% end %>
+      <%= f.label :payrollburden, "Payroll Burden:" %>
     <% if @payroll_burden %>
         <%= f.number_field :payrollburden, :value => @payroll_burden.payrollburden  %>%<br />
     <% else %>
         <%= f.number_field :payrollburden%>%<br />
     <% end %>
+    <%= f.label :job_id, "Job Name:" %>
         <%= f.collection_select(:job_id, Job.active, :id, :job_name, :include_blank => "Please Select") %>
 
 
-    <%= f.submit "Submit" %>
+    <div><%= f.submit "Submit" %></div>
 
   <% end %>
