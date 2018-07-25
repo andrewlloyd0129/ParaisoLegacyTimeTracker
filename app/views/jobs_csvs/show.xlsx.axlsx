@@ -1,19 +1,39 @@
 wb = xlsx_package.workbook
+img = File.expand_path(Rails.root+'app/assets/images/Lloyds_Logo.png')
 
 wb.add_worksheet(name: "Payroll") do |sheet|
 
- sheet.add_row
- sheet.add_row
- sheet.add_row ["", "", "", "", "", "Payroll Job Costing Report:", "#{@report.job.job_number} #{@report.job.job_name}"]
- sheet.add_row ["", "", "", "", "Job:", "#{@report.job.job_number} #{@report.job.job_name}"]
- sheet.add_row
- sheet.add_row ["", "", "", "Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
-  @report.job.task_entries.each do |entry|
-   sheet.add_row ["", "", "", entry.time_entry.start_time, entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
-  end
+sheet.add_image(:image_src => img, :noMove => true) do |image|
+  image.width = 306
+  image.height = 85
+  image.start_at 0, 0
+end
 
   sheet.add_row
   sheet.add_row
+  sheet.add_row ["","","","","","Payroll Job Costing Report"]
+  sheet.add_row
+  sheet.add_row
+  sheet.add_row ["", "LCC Job Number:", "#{@report.job.job_number}", "", "", "", "", "Salesperson:"]
+  sheet.add_row ["", "LCC Job Name:", "#{@report.job.job_name}", "", "", "", "", "Date of Completion:"]
+  sheet.add_row
+  sheet.add_row ["Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
+  @report.job.task_entries.each do |entry|
+    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
+  end
+
+  sheet.add_row []
+  sheet.add_row
   sheet.add_row
   sheet.add_row ["Total Sales:"]
+
+@tasks.each do |task|
+  x = 0
+  @report.job.task_entries.each do |entry|
+    if entry.task == task
+      x += entry.total_cost
+    end
+  end
+   sheet.add_row ["Total #{task}:", "#{x}"] 
+end
 end
