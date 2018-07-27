@@ -3,11 +3,11 @@ img = File.expand_path(Rails.root+'app/assets/images/Lloyds_Logo.png')
 hours, overtime, gross_pay, payroll_burden, total_cost = 0, 0, 0, 0, 0
 
 @report.job.task_entries.each do |entry|
-  hours += entry.hours / 100
-  overtime += entry.overtime / 100
-  payroll_burden += entry.payroll_burden / 1000000
-  total_cost += entry.total_cost / 10000
-  gross_pay += entry.gross_pay / 10000
+  hours += entry.hours.to_f / 100
+  overtime += entry.overtime.to_f / 100
+  payroll_burden += entry.payroll_burden.to_f / 1000000
+  total_cost += entry.total_cost.to_f / 1000000
+  gross_pay += entry.gross_pay.to_f / 10000
 end
 
 wb.add_worksheet(name: "Payroll") do |sheet|
@@ -30,7 +30,7 @@ end
   sheet.add_row ["Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
 
   @report.job.task_entries.each do |entry|
-    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours / 100, entry.overtime / 100, entry.wage / 100, entry.gross_pay / 10000, entry.payroll_burden / 1000000, entry.total_cost / 1000000]
+    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours.to_f / 100, entry.overtime.to_f / 100, entry.wage.to_f / 100, entry.gross_pay.to_f / 10000, entry.payroll_burden.to_f / 1000000, entry.total_cost.to_f / 1000000]
   end
 
   sheet.add_row
@@ -42,7 +42,7 @@ end
   x = 0
   @report.job.task_entries.each do |entry|
     if entry.task == task
-      x += entry.total_cost / 10000
+      x += entry.total_cost.to_f / 1000000
     end
   end
    sheet.add_row ["","Total #{task.title}:", "#{x}"] 
