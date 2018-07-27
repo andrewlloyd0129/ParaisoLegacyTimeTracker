@@ -6,7 +6,7 @@ hours, overtime, gross_pay, payroll_burden, total_cost = 0, 0, 0, 0, 0
   hours += entry.hours / 100
   overtime += entry.overtime / 100
   payroll_burden += entry.payroll_burden / 1000000
-  total_cost += entry.total_cost / 1000
+  total_cost += entry.total_cost / 10000
   gross_pay += entry.gross_pay / 10000
 end
 
@@ -20,6 +20,7 @@ end
 
   sheet.add_row
   sheet.add_row
+  sheet.add_row
   sheet.add_row ["","","","","","Payroll Job Costing Report"]
   sheet.add_row
   sheet.add_row
@@ -29,7 +30,7 @@ end
   sheet.add_row ["Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
 
   @report.job.task_entries.each do |entry|
-    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours / 100, entry.overtime / 100, entry.wage / 100, entry.gross_pay / 10000, entry.payroll_burden / 1000000, entry.total_cost / 100000]
+    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours / 100, entry.overtime / 100, entry.wage / 100, entry.gross_pay / 10000, entry.payroll_burden / 1000000, entry.total_cost / 1000000]
   end
 
   sheet.add_row
