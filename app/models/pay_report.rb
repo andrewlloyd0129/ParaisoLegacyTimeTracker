@@ -29,8 +29,8 @@ class PayReport < ApplicationRecord
 
 	def self.create_report
 		PayReport.create!(
-			start: PayReport.find_start_of_week.to_time + 6.days,
-			end: PayReport.find_start_of_week.to_time,
+			end: PayReport.find_start_of_week.to_time + 6.days,
+			start: PayReport.find_start_of_week.to_time,
 			task_entries: PayReport.this_weeks_entries
 		)
 	end

@@ -10,9 +10,7 @@ class JobsCsvsController < ApplicationController
       @tasks = Task.all
 
       @task_entries.each do |entry|
-        if entry.total_cost == nil
           entry.calculate_fields
-        end
       end
 
 
