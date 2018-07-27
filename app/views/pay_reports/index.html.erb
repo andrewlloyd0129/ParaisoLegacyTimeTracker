@@ -7,8 +7,8 @@
   </tr>
 <% @pay_reports.each do |report| %>
   <tr>
-    <td><%= report.start%></td>
-    <td><%= report.end%></td>
+    <td><%= report.start.strftime("%m/%d/%Y")%></td>
+    <td><%= report.end.strftime("%m/%d/%Y")%></td>
     <td><%= report.task_entries.count%></td>
     <td><%= link_to "Download", pay_report_path(report, :format => :xlsx)%></td>
 <!--     <% report.task_entries.each do |poop| %>
