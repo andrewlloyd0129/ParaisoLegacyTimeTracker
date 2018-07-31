@@ -1,19 +1,50 @@
 wb = xlsx_package.workbook
+img = File.expand_path(Rails.root+'app/assets/images/Lloyds_Logo.png')
+hours, overtime, gross_pay, payroll_burden, total_cost = 0, 0, 0, 0, 0
+
+@report.job.task_entries.each do |entry|
+  hours += entry.hours.to_f / 100
+  overtime += entry.overtime.to_f / 100
+  payroll_burden += entry.payroll_burden.to_f / 1000000
+  total_cost += entry.total_cost.to_f / 1000000
+  gross_pay += entry.gross_pay.to_f / 10000
+end
 
 wb.add_worksheet(name: "Payroll") do |sheet|
 
- sheet.add_row
- sheet.add_row
- sheet.add_row ["", "", "", "", "", "Payroll Job Costing Report:", "#{@report.job.job_number} #{@report.job.job_name}"]
- sheet.add_row ["", "", "", "", "Job:", "#{@report.job.job_number} #{@report.job.job_name}"]
- sheet.add_row
- sheet.add_row ["", "", "", "Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
-  @report.job.task_entries.each do |entry|
-   sheet.add_row ["", "", "", entry.time_entry.start_time, entry.time_entry.user.full_name, entry.task.title, entry.hours, entry.overtime, entry.wage, entry.gross_pay, entry.payroll_burden, entry.total_cost]
-  end
+sheet.add_image(:image_src => img, :noMove => true) do |image|
+  image.width = 306
+  image.height = 85
+  image.start_at 0, 0
+end
 
   sheet.add_row
   sheet.add_row
   sheet.add_row
-  sheet.add_row ["Total Sales:"]
+  sheet.add_row ["","","","","","Payroll Job Costing Report"]
+  sheet.add_row
+  sheet.add_row
+  sheet.add_row ["", "LCC Job Number:", "#{@report.job.job_number}", "", "", "", "", "Salesperson:"]
+  sheet.add_row ["", "LCC Job Name:", "#{@report.job.job_name}", "", "", "", "", "Date of Completion:"]
+  sheet.add_row
+  sheet.add_row ["Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
+
+  @report.job.task_entries.each do |entry|
+    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours.to_f / 100, entry.overtime.to_f / 100, entry.wage.to_f / 100, entry.gross_pay.to_f / 10000, entry.payroll_burden.to_f / 1000000, entry.total_cost.to_f / 1000000]
+  end
+
+  sheet.add_row
+  sheet.add_row ["", "", "Totals:", hours, overtime, "", gross_pay, payroll_burden, total_cost]
+  sheet.add_row
+
+
+@tasks.each do |task|
+  x = 0
+  @report.job.task_entries.each do |entry|
+    if entry.task == task
+      x += entry.total_cost.to_f / 1000000
+    end
+  end
+   sheet.add_row ["","Total #{task.title}:", "#{x}"] 
+end
 end

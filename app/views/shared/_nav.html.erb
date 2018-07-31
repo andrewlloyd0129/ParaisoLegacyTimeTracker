@@ -15,6 +15,9 @@
   </li>
   <% if logged_in?(:admin) %>
   <li class="nav-item">
+    <%= link_to 'Pay Reports', pay_reports_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
     <%= link_to 'Employees', admin_root_path, class: "nav-link" %>
   </li>
   <% end %>

@@ -2,7 +2,7 @@ class TaskEntry < ApplicationRecord
   belongs_to :time_entry
   belongs_to :task
   belongs_to :job
-  belongs_to :pay_reports, optional: true
+  belongs_to :pay_report, optional: true
   has_one :user, :through => :time_entry
 
   def self.this_weeks_entries ents
@@ -35,10 +35,23 @@ class TaskEntry < ApplicationRecord
     return d
   end
 
+  def find_end_of_week
+    d = self.start_date
+    while true
+      if d.wday == 0
+        break
+      end
+      d += 1
+    end
+    d
+    return d + 1
+  end
+
   def calculate_fields
     calculate_wage
-    overtime_generator
     gross_pay_generator
+    payroll_burden_generator
+    total_cost_generator
   end
 
   def calculate_wage
@@ -79,7 +92,7 @@ class TaskEntry < ApplicationRecord
   end
 
   def payroll_burden_generator
-    self.payroll_burden = self.gross_pay.to_i * self.job.jobs_csvs.last.payrollburden
+    self.payroll_burden = self.gross_pay.to_i * JobsCsv.last.payrollburden
     self.save
   end
 
