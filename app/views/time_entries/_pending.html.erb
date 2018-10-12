@@ -5,9 +5,9 @@
   <%= entry.status %>
   <br>
   <%= entry.start_date.strftime("%D") %>
-  <%= entry.start_time.strftime("%l:%M %p") %><br>
+  <%= entry.start_time.strftime("%H:%M") %><br>
   <%= entry.end_date.strftime("%D") if entry.end_date != nil %>
-  <%= entry.end_time.strftime("%l:%M %p") if entry.end_time != nil %>
+  <%= entry.end_time.strftime("%H:%M") if entry.end_time != nil %>
   <div style="margin-bottom: .5em;">
   <%= link_to "EDIT", edit_time_entry_path(entry), class: 'btn btn-warning' %>
   <%= link_to "DELETE", entry, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
@@ -25,8 +25,8 @@
   <tr>
       <td><%= task.job.job_name %></td>
       <td><%= task.task.title %></td>
-      <td><%= task.start_time.strftime("%l:%M %p") %></td>
-      <td><%= task.end_time.strftime("%l:%M %p") unless !task.end_time %></td>
+      <td><%= task.start_time.strftime("%H:%M") %></td>
+      <td><%= task.end_time.strftime("%H:%M") unless !task.end_time %></td>
     <% end %>
     </tr>
   </table>

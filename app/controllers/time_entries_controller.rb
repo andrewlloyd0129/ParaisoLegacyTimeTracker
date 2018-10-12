@@ -6,7 +6,7 @@ class TimeEntriesController < ApplicationController
     @current_entry = TimeEntry.where(user_id: current_user.id, end_time: nil).last
     @pending = TimeEntry.where(status: 'pending')
     @todays_entries = TimeEntry.todays_entries @entries
-    @weeks_entries = TimeEntry.this_weeks_entries @entries
+    @weeks_entries = TimeEntry.this_weeks_entries(@entries)
     @rejected = TimeEntry.where(user_id: current_user.id, status: 'rejected')
   end
 

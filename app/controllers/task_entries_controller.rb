@@ -3,7 +3,7 @@ class TaskEntriesController < ApplicationController
 	# access all: [:show, :index], user: {except: [:destroy, :new, :create, :update, :edit, :toggle_status]}, admin: :all
 
 	def index
-		@task_entries = TaskEntry.all
+		@task_entries = TaskEntry.all.order(start_time: :desc)
 	end
 
 	def new

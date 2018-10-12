@@ -5,9 +5,9 @@
   <%= link_to "Reject", admin_reject_time_entry_path(entry), class: 'btn btn-danger' %>
   <h5><%= entry.user.full_name %></h5>
   <%= entry.start_date.strftime("%D") %>
-  <%= entry.start_time.strftime("%l:%M %p") %><br>
+  <%= entry.start_time.strftime("%H:%M") %><br>
   <%= entry.end_date.strftime("%D") if entry.end_date != nil %>
-  <%= entry.end_time.strftime("%l:%M %p") if entry.end_time != nil %>
+  <%= entry.end_time.strftime("%H:%M") if entry.end_time != nil %>
   <br>
     <button class='btn btn-primary' onclick="toggleHideShow(<%= entry.id %>)">show/hide details</button>
   <div id="myDIV<%= entry.id %>">
@@ -22,8 +22,8 @@
   <tr>
       <td><%= task.job.job_name %></td>
       <td><%= task.task.title %></td>
-      <td><%= task.start_time.strftime("%l:%M %p") %></td>
-      <td><%= task.end_time.strftime("%l:%M %p") unless !task.end_time %></td>
+      <td><%= task.start_time.strftime("%H:%M") %></td>
+      <td><%= task.end_time.strftime("%H:%M") unless !task.end_time %></td>
     <% end %>
     </tr>
   </table>

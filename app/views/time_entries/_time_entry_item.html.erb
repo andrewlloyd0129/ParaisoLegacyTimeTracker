@@ -9,10 +9,10 @@
 <%= time_entry_item.status %>
 <br>
 <%= time_entry_item.start_date.strftime("%D") %>
-<%= time_entry_item.start_time.strftime("%l:%M %p") %>
+<%= time_entry_item.start_time.strftime("%H:%M") %>
 <br>
 <%= time_entry_item.end_date.strftime("%D") if time_entry_item.end_date != nil %>
-<%= time_entry_item.end_time.strftime("%l:%M %p") if time_entry_item.end_time != nil %>
+<%= time_entry_item.end_time.strftime("%H:%M") if time_entry_item.end_time != nil %>
 <br>
 <div style="margin-bottom: .5em;">
   <%= link_to "EDIT", edit_time_entry_path(time_entry_item), class: 'btn btn-warning' %>
@@ -34,8 +34,8 @@
         <tr>
           <td><%= task.job != nil ? task.job.job_name : "N/A" %></td>
           <td><%= task.task.title %></td>
-          <td><%= task.start_time.strftime("%I:%M %p") %></td>
-          <td><%= task.end_time.strftime("%I:%M %p") unless !task.end_time %></td>
+          <td><%= task.start_time.strftime("%H:%M") %></td>
+          <td><%= task.end_time.strftime("%H:%M") unless !task.end_time %></td>
         <% end %>
       </tr>
     </table>
