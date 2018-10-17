@@ -18,7 +18,7 @@
     </div>
 
     <div class="col-md-6">
-      <%= f.collection_select(:job_id, Job.where(status: "active"), :id, :job_name, {:include_blank => "Job Select"}, {class: 'form-control'}) %>
+      <%= f.collection_select(:job_id, Job.where(status: "active"), :id, :JobNameAndNumber, {:include_blank => "Job Select"}, {class: 'form-control'}) %>
     </div>
   </div>
 

@@ -1,4 +1,4 @@
 <div class="form-group nested-fields">
 <%= f.hidden_field :end_date, value: Date.today, readonly: true %>
-<%= f.text_field :end_time, value: Time.now.strftime("%l:%M %p"), readonly: true, class: 'form-control' %>
+<%= f.text_field :end_time, value: Time.now.strftime("%H:%M"), readonly: true, class: 'form-control' %>
 </div>
