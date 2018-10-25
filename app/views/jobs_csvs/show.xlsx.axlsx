@@ -30,7 +30,7 @@ end
   sheet.add_row ["Date", "Employee", "Task", "Hours", "O/T Hours", "Wage", "Gross Pay", "Payroll Burden", "Total Cost"]
 
   @report.job.task_entries.each do |entry|
-    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours.to_f / 100, entry.overtime.to_f / 100, entry.wage.to_f / 100, entry.gross_pay.to_f / 10000, entry.payroll_burden.to_f / 1000000, entry.total_cost.to_f / 1000000]
+    sheet.add_row [entry.start_date, entry.time_entry.user.full_name, entry.task.title, entry.hours.to_f / 100, entry.overtime.to_f / 100, entry.wage.to_f / 100, entry.gross_pay.to_f / 10000, entry.payroll_burden.to_f / 10000, entry.total_cost.to_f / 10000]
   end
 
   sheet.add_row

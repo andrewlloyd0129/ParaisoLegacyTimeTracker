@@ -92,7 +92,7 @@ class TaskEntry < ApplicationRecord
   end
 
   def payroll_burden_generator
-    self.payroll_burden = self.gross_pay.to_i * JobsCsv.last.payrollburden
+    self.payroll_burden = self.gross_pay.to_i * (JobsCsv.last.payrollburden.to_f / 100)
     self.save
   end
 
