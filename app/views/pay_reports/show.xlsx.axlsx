@@ -18,10 +18,10 @@ wb.add_worksheet(name: "Payroll") do |sheet|
 	 		hours += entry.hours.to_f
 	 		ot += entry.overtime.to_f
 	 	end
-	 	sheet.add_row [tasks.first.time_entry.user.full_name,"Regular",hours.to_f / 100,tasks.first.time_entry.user.wage.to_f / 100, (hours*tasks.first.time_entry.user.wage.to_f) / 10000 ]
-	 	sheet.add_row ["","overtime",ot / 100,tasks.first.time_entry.user.wage.to_f * 1.5 / 100, ot * tasks.first.time_entry.user.wage.to_f * 1.5 / 10000]
+	 	sheet.add_row [tasks.time_entry.user.full_name,"Regular",hours.to_f / 100,tasks.time_entry.user.wage.to_f / 100, (hours*tasks.time_entry.user.wage.to_f) / 10000 ]
+	 	sheet.add_row ["","overtime",ot / 100,tasks.time_entry.user.wage.to_f * 1.5 / 100, ot * tasks.time_entry.user.wage.to_f * 1.5 / 10000]
 	 	sheet.add_row 
-	 	sheet.add_row ["","","","Total",((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000]
+	 	sheet.add_row ["","","","Total",((ot * tasks.time_entry.user.wage.to_f * 1.5) + (hours*tasks.time_entry.user.wage.to_f)) / 10000]
 	 	sheet.add_row 
 	 end
 
