@@ -33,8 +33,6 @@ wb.add_worksheet(name: "Payroll") do |sheet|
 	 	sheet.add_row 
 	 	sheet.add_row ["","","","Total",((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000]
 	 	sheet.add_row 
-	else
-		sheet.add_row["report error"]
 	end
 
 end
