@@ -18,7 +18,7 @@ wb.add_worksheet(name: "Payroll") do |sheet|
  				 		puts "this ran3"
 
 	 	tasks.each do |entry|
-	 		sheet.add_row ["#{entry.task.title}"]
+	 		# sheet.add_row ["#{entry.task.title}"]
 	 		puts "this ran1"
 
 	 		hours += entry.hours.to_f
