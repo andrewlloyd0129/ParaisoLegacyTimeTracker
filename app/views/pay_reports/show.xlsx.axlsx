@@ -1,5 +1,4 @@
 wb = xlsx_package.workbook
-	 		puts "this ran1"
 
 
 wb.add_worksheet(name: "Payroll") do |sheet|
@@ -10,15 +9,17 @@ wb.add_worksheet(name: "Payroll") do |sheet|
 	sheet.add_row [""	,"","Period Ending:"	,@pay_report.end]
 	sheet.add_row 
 	sheet.add_row ["Employee"	,"Reg/OT","Total\nHours"		, "Rate"		, "TOTAL GROSS"]
-	 		puts "this ran2"
 
 	@users_entries.each do |tasks|
-			 		puts "this ran3"
+	 		puts "this ran2"
 
  	hours = 0
  	ot = 0
+ 				 		puts "this ran3"
+
 	 	tasks.each do |entry|
 	 		sheet.add_row ["#{entry.task.title}"]
+	 		puts "this ran1"
 
 	 		hours += entry.hours.to_f
 	 		ot += entry.overtime.to_f
