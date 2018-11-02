@@ -72,8 +72,9 @@ end
 			end
 
 	 	end
+	 	if tasks.first
 	 		 		sheet.add_row ["", "", "", "", "", "Total", ((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000 ]
-
+	 	end
 
 end
 
