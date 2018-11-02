@@ -10,40 +10,40 @@ wb.add_worksheet(name: "Payroll") do |sheet|
 	sheet.add_row 
 	sheet.add_row ["Employee"	, "Job", "Task", "Reg/OT","Total\nHours"		, "Rate"		, "TOTAL GROSS"]
 
-	@users_entries.each do |tasks|
-	 		puts "this ran2"
+# 	@users_entries.each do |tasks|
+# 	 		puts "this ran2"
 
- 	hours = 0
- 	ot = 0
- 				 		puts "this ran3"
+#  	hours = 0
+#  	ot = 0
+#  				 		puts "this ran3"
 
-	 	tasks.each do |entry|
-	 		# sheet.add_row ["#{entry.task.title.to_str}"]
-	 		puts "this ran1"
+# 	 	tasks.each do |entry|
+# 	 		# sheet.add_row ["#{entry.task.title.to_str}"]
+# 	 		puts "this ran1"
 
-	 		hours += entry.hours.to_f
-	 		ot += entry.overtime.to_f
-	 			 		puts "this ran4"
+# 	 		hours += entry.hours.to_f
+# 	 		ot += entry.overtime.to_f
+# 	 			 		puts "this ran4"
 
-	 	end
-	 	if tasks.first
-	 		puts "this ran"
-	 	sheet.add_row [ tasks.first.time_entry.user.full_name, tasks.first.job.JobNameAndNumber, tasks.first.task.title,  "Regular" ,hours.to_f / 100, tasks.first.time_entry.user.wage.to_f / 100 , (hours*tasks.first.time_entry.user.wage.to_f) / 10000 ]
-	 	sheet.add_row ["", "", "", "overtime",ot / 100, tasks.first.time_entry.user.wage.to_f * 1.5 / 100, ot * tasks.first.time_entry.user.wage.to_f * 1.5 / 10000 ]
-	 	sheet.add_row 
-	 	sheet.add_row ["", "", "", "", "", "Total", ((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000 ]
-	 	sheet.add_row 
-	 		 	sheet.add_row 
+# 	 	end
+# 	 	if tasks.first
+# 	 		puts "this ran"
+# 	 	sheet.add_row [ tasks.first.time_entry.user.full_name, tasks.first.job.JobNameAndNumber, tasks.first.task.title,  "Regular" ,hours.to_f / 100, tasks.first.time_entry.user.wage.to_f / 100 , (hours*tasks.first.time_entry.user.wage.to_f) / 10000 ]
+# 	 	sheet.add_row ["", "", "", "overtime",ot / 100, tasks.first.time_entry.user.wage.to_f * 1.5 / 100, ot * tasks.first.time_entry.user.wage.to_f * 1.5 / 10000 ]
+# 	 	sheet.add_row 
+# 	 	sheet.add_row ["", "", "", "", "", "Total", ((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000 ]
+# 	 	sheet.add_row 
+# 	 		 	sheet.add_row 
 
-	 	sheet.add_row 
+# 	 	sheet.add_row 
 
-	 	sheet.add_row 
+# 	 	sheet.add_row 
 
-	 	sheet.add_row 
+# 	 	sheet.add_row 
 
-	end
+# 	end
 
-end
+# end
 
 
 
@@ -62,23 +62,18 @@ end
 	 		ot += entry.overtime.to_f
 	 			 		puts "this ran4"
 
-	 		if tasks.first
-	 		puts "this ran"
-	 		sheet.add_row [ entry.time_entry.user.full_name, entry.job.JobNameAndNumber, entry.task.title,  "Regular" , entry.hours.to_f / 100, entry.time_entry.user.wage.to_f / 100 , (entry.hours*entry.time_entry.user.wage.to_f) / 10000 ]
-	 		sheet.add_row ["", "", "", "overtime",entry.overtime / 100, entry.time_entry.user.wage.to_f * 1.5 / 100, entry.overtime * entry.time_entry.user.wage.to_f * 1.5 / 10000 ]
-	 		sheet.add_row 
-	 		sheet.add_row ["", "", "", "", "", "Total", ((entry.overtime * entry.time_entry.user.wage.to_f * 1.5) + (entry.hours*entry.time_entry.user.wage.to_f)) / 10000 ]
-	 		sheet.add_row 
-			end
+	 			if tasks.first
+	 				puts "this ran"
+	 				sheet.add_row [ entry.time_entry.user.full_name, entry.job.JobNameAndNumber, entry.task.title,  "Regular" , entry.hours.to_f / 100, entry.time_entry.user.wage.to_f / 100 , (entry.hours*entry.time_entry.user.wage.to_f) / 10000 ]
+	 				sheet.add_row ["", "", "", "overtime",entry.overtime / 100, entry.time_entry.user.wage.to_f * 1.5 / 100, entry.overtime * entry.time_entry.user.wage.to_f * 1.5 / 10000 ]
+	 				sheet.add_row ["", "", "", "", "", "Total", ((entry.overtime * entry.time_entry.user.wage.to_f * 1.5) + (entry.hours*entry.time_entry.user.wage.to_f)) / 10000 ]
+	 				sheet.add_row 
+				end
 
-	 	end
+	 		end
 	 	if tasks.first
-	 		 		sheet.add_row ["", "", "", "", "", "Total", ((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000 ]
+	 		sheet.add_row ["", "", "", "", tasks.first.time_entry.user.full_name, "Weekly Total", ((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000 ]
+	 		sheet.add_row
 	 	end
-
-end
-
-
-
-
+	end
 end
