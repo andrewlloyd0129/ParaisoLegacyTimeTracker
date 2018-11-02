@@ -65,14 +65,15 @@ end
 	 		if tasks.first
 	 		puts "this ran"
 	 		sheet.add_row [ entry.time_entry.user.full_name, entry.job.JobNameAndNumber, entry.task.title,  "Regular" , entry.hours.to_f / 100, entry.time_entry.user.wage.to_f / 100 , (entry.hours*entry.time_entry.user.wage.to_f) / 10000 ]
-	 		sheet.add_row ["", "", "", "overtime",ot / 100, entry.time_entry.user.wage.to_f * 1.5 / 100, entry.overtime * entry.time_entry.user.wage.to_f * 1.5 / 10000 ]
+	 		sheet.add_row ["", "", "", "overtime",entry.overtime / 100, entry.time_entry.user.wage.to_f * 1.5 / 100, entry.overtime * entry.time_entry.user.wage.to_f * 1.5 / 10000 ]
 	 		sheet.add_row 
 	 		sheet.add_row ["", "", "", "", "", "Total", ((entry.overtime * entry.time_entry.user.wage.to_f * 1.5) + (entry.hours*entry.time_entry.user.wage.to_f)) / 10000 ]
 	 		sheet.add_row 
 			end
 
 	 	end
-	 	
+	 		 		sheet.add_row ["", "", "", "", "", "Total", ((ot * entry.time_entry.user.wage.to_f * 1.5) + (hours*entry.time_entry.user.wage.to_f)) / 10000 ]
+
 
 end
 
