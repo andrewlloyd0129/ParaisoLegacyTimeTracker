@@ -72,7 +72,7 @@ end
 			end
 
 	 	end
-	 		 		sheet.add_row ["", "", "", "", "", "Total", ((ot * entry.time_entry.user.wage.to_f * 1.5) + (hours*entry.time_entry.user.wage.to_f)) / 10000 ]
+	 		 		sheet.add_row ["", "", "", "", "", "Total", ((ot * tasks.first.time_entry.user.wage.to_f * 1.5) + (hours*tasks.first.time_entry.user.wage.to_f)) / 10000 ]
 
 
 end
