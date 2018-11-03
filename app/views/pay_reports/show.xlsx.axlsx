@@ -1,12 +1,22 @@
 wb = xlsx_package.workbook
+img = File.expand_path(Rails.root+'app/assets/images/Lloyds_Logo.png')
 
 
 wb.add_worksheet(name: "Payroll") do |sheet|
 
-	sheet.add_row ["Lloyds \n Cabinetry and Countertops"]
-	sheet.add_row [""	,""					,"Payroll Report"]
-	sheet.add_row [""	,"","Period Starting:"	,@pay_report.start]
-	sheet.add_row [""	,"","Period Ending:"	,@pay_report.end]
+	sheet.add_image(:image_src => img, :noMove => true) do |image|
+  image.width = 306
+  image.height = 85
+  image.start_at 0, 0
+	end
+
+	sheet.add_row 
+	sheet.add_row [""	,"",""	,"","Payroll Report"]
+	sheet.add_row [""	,"",""	,"","Period Starting:"	,@pay_report.start]
+	sheet.add_row [""	,"",""	,"","Period Ending:"	,@pay_report.end]
+	sheet.add_row 
+	sheet.add_row 
+	sheet.add_row 
 	sheet.add_row 
 	sheet.add_row ["Employee"	, "Job", "Task", "Reg/OT","Total\nHours"		, "Rate"		, "TOTAL GROSS"]
 
